@@ -1,24 +1,411 @@
 % integrals.tex
 \section{Integrals}
 
-\subsection*{Sample Cascade Scheme: Computing a Definite Integral}
+In this section we will explore some types of exercises that can be asked in a typical calculus exam. Specifically we will explore two categories:
 
-\begin{cascade}[Computing a Definite Integral]
-	\textbf{Key Question:} How do you compute a definite integral?
+\begin{itemize}
+	\item Integral function exercises
+	\item Improper integral exercises
+\end{itemize}
+
+\subsection{Integral function exercises}
+
+\begin{cascade}[Computing the derivative of a composition of the integral function]
+	\textbf{Key Question:} How can we compute the derivative of a function that is the composition of the integral function with another function?
 	\begin{itemize}
-		\item \textbf{Check if the integrand is continuous}
-		\item \textbf{Find an antiderivative $F(x)$ of the integrand}
-		\item \textbf{Apply the Fundamental Theorem of Calculus}
+		\item \textbf{Remember the derivative formula for composite functions}
 		      \begin{itemize}
-			      \item $F(b) - F(a)$
+			      \item $(f \circ g)'(x) = f'(g(x)) \cdot g'(x)$
 		      \end{itemize}
-		\item \textbf{Consider special cases}
+		\item \textbf{Consider Torricelli's Theorem}
 		      \begin{itemize}
-			      \item Improper integrals
-			      \item Discontinuous functions
+			      \item $F(x) = \int_a^x f(t) dt$
+			      \item $F'(x) = f(x)$
 		      \end{itemize}
-		\item \textbf{Verify the result}
+		\item \textbf{Example}
+		      \begin{itemize}
+			      \item $G(x)  & = \int_a^{m(x)} f(t)\,dt = F(m(x))$
+			      \item $G'(x) & = F'(m(x)) \cdot m'(x) = f(m(x)) \cdot m'(x)$
+		      \end{itemize}
 	\end{itemize}
 \end{cascade}
+
+\hfill
+
+\begin{cascade}[Computing the derivative of an integral with variable limits]
+	\textbf{Key Question:} How can we compute the derivative of a function defined by an integral where both limits depend on $x$, i.e., $G(x) = \int_{n(x)}^{m(x)} f(t) dt$?
+
+	\additem{
+		\textbf{1. Split the integral using a constant lower limit}
+		\begin{itemize}
+			\item Use the property of definite integrals: $\int_a^b f(t) dt = \int_c^b f(t) dt - \int_c^a f(t) dt$.
+			\item Apply this to $G(x)$: Choose an arbitrary constant $a$ (often 0 or 1) in the domain of $f$.
+			      \[ G(x) = \int_{n(x)}^{m(x)} f(t) dt = \int_a^{m(x)} f(t) dt - \int_a^{n(x)} f(t) dt \]
+		\end{itemize}
+	}
+	\additem{
+		\textbf{2. Define an auxiliary function using Torricelli's Theorem}
+		\begin{itemize}
+			\item Let $F(x) = \int_a^x f(t) dt$.
+			\item By the Fundamental Theorem of Calculus (Part 1 / Torricelli's Theorem), $F'(x) = f(x)$.
+			\item Rewrite $G(x)$ using $F$: $G(x) = F(m(x)) - F(n(x))$.
+		\end{itemize}
+	}
+	\additem{
+		\textbf{3. Differentiate using the Chain Rule}
+		\begin{itemize}
+			\item Apply the chain rule to differentiate $F(m(x))$ and $F(n(x))$:
+			      \[ (F(h(x)))' = F'(h(x)) \cdot h'(x) = f(h(x)) \cdot h'(x) \]
+			\item Therefore, the derivative of $G(x)$ is:
+			      \[ G'(x) = \frac{d}{dx}[F(m(x))] - \frac{d}{dx}[F(n(x))] \]
+			      \[ G'(x) = F'(m(x)) \cdot m'(x) - F'(n(x)) \cdot n'(x) \]
+			      \[ G'(x) = f(m(x)) \cdot m'(x) - f(n(x)) \cdot n'(x) \]
+		\end{itemize}
+	}
+	\additem{
+		\textbf{4. Example}
+		\begin{itemize}
+			\item Compute the derivative of $G(x) = \int_x^{2x} \frac{\sin t}{t} dt$.
+			\item Here, $f(t) = \frac{\sin t}{t}$, $m(x) = 2x$, and $n(x) = x$.
+			\item Choose $a=1$ (any constant works). Let $F(x) = \int_1^x \frac{\sin t}{t} dt$.
+			\item Then $G(x) = F(2x) - F(x)$.
+			\item The derivatives are $m'(x) = 2$ and $n'(x) = 1$.
+			\item Applying the formula:
+			      \[ G'(x) = f(m(x)) \cdot m'(x) - f(n(x)) \cdot n'(x) \]
+			      \[ G'(x) = f(2x) \cdot 2 - f(x) \cdot 1 \]
+			      \[ G'(x) = \frac{\sin(2x)}{2x} \cdot 2 - \frac{\sin x}{x} \cdot 1 \]
+			      \[ G'(x) = \frac{\sin(2x)}{x} - \frac{\sin x}{x} = \frac{\sin(2x) - \sin x}{x} \]
+		\end{itemize}
+	}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Computing limits involving integrals and indeterminate forms]
+	\textbf{Key Question:} How to compute the limit: $$\lim_{x \to 0} \frac{x - \int_0^x (e^{-t^2} + \sin^2 t) dt}{x(x^2 - \sin^2 x)}$$
+	\begin{itemize}
+		\item \textbf{Initial Check: Identify Indeterminate Form}
+		      \begin{itemize}
+			      \item Substitute $x=0$ into the numerator: $0 - \int_0^0 (e^{-t^2} + \sin^2 t) dt = 0 - 0 = 0$.
+			      \item Substitute $x=0$ into the denominator: $0 \cdot (0^2 - \sin^2 0) = 0 \cdot (0 - 0) = 0$.
+			      \item The limit presents the indeterminate form $\left[\frac{0}{0}\right]$.
+		      \end{itemize}
+		\item \textbf{Apply L'Hôpital's Rule}
+		      \begin{itemize}
+			      \item Differentiate the numerator with respect to $x$. Requires the Fundamental Theorem of Calculus (Torricelli-Barrow) for the integral part:
+			            \[ \frac{d}{dx} \left( x - \int_0^x (e^{-t^2} + \sin^2 t) dt \right) = 1 - (e^{-x^2} + \sin^2 x) \]
+			      \item Differentiate the denominator with respect to $x$ using the product rule:
+			            \[ \frac{d}{dx} (x(x^2 - \sin^2 x)) = (x^2 - \sin^2 x) + (2x^2 - x\sin(2x)) \]
+			      \item The limit becomes (applying L'Hôpital's Rule):
+			            \[ L \stackrel{H}{=} \lim_{x \to 0} \frac{1 - e^{-x^2} - \sin^2 x}{(x^2 - \sin^2 x) + (2x^2 - x\sin(2x))} \]
+		      \end{itemize}
+		\item \textbf{Evaluate the New Limit (Using Taylor Series Approximation)}
+		      \begin{itemize}
+			      \item The limit is still in the form $\left[\frac{0}{0}\right]$. Further application of L'Hôpital's Rule is possible, but Taylor expansions are often more efficient.
+			      \item Approximate numerator and denominator for $x \to 0$:
+			            \begin{itemize}
+				            \item $1 - e^{-x^2} - \sin^2 x = \frac{5}{6}x^4 + o(x^4)$
+				            \item $(x^2 - \sin^2 x) + (2x^2 - x\sin(2x)) = \frac{5}{3}x^4 + o(x^4)$
+			            \end{itemize}
+			            (Note: These approximations are taken from the image provided).
+			      \item Substitute the approximations back into the limit:
+			            \[ L = \lim_{x \to 0} \frac{\frac{5}{6}x^4 + o(x^4)}{\frac{5}{3}x^4 + o(x^4)} = \frac{5/6}{5/3} = \frac{5}{6} \cdot \frac{3}{5} = \frac{1}{2} \]
+		      \end{itemize}
+		\item \textbf{Result:} The limit exists and its value is $\frac{1}{2}$.
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Computing Maclaurin Polynomials for Composite Functions with Integrals]
+	\textbf{Key Question:} How to determine the Maclaurin polynomial for $F(x) = \sin\left(\int_0^x e^{-t^2} dt\right)$?
+	\begin{itemize}
+		\item \textbf{Define Auxiliary Function for the Integral}
+		      \begin{itemize}
+			      \item Let $G(x) = \int_0^x e^{-t^2} dt$.
+			      \item The original function becomes $F(x) = \sin(G(x))$.
+		      \end{itemize}
+		\item \textbf{Find the Maclaurin Series for the Auxiliary Function $G(x)$}
+		      \begin{itemize}
+			      \item Calculate derivatives of $G(x)$ and evaluate at $x=0$:
+			            \begin{itemize}
+				            \item $G(0) = \int_0^0 e^{-t^2} dt = 0$
+				            \item $G'(x) = e^{-x^2}$ (by Fundamental Theorem of Calculus) $\rightarrow G'(0) = e^0 = 1$
+				            \item $G''(x) = -2x e^{-x^2} \rightarrow G''(0) = 0$
+				            \item $G'''(x) = -2e^{-x^2} + 4x^2 e^{-x^2} \rightarrow G'''(0) = -2$
+			            \end{itemize}
+			      \item Construct the Maclaurin series for $G(x)$ using $G(x) = \sum_{n=0}^{\infty} \frac{G^{(n)}(0)}{n!}x^n$:
+			            \[ G(x) = G(0) + G'(0)x + \frac{G''(0)}{2!}x^2 + \frac{G'''(0)}{3!}x^3 + o(x^3) \]
+			            \[ G(x) = 0 + 1 \cdot x + \frac{0}{2}x^2 + \frac{-2}{6}x^3 + o(x^3) = x - \frac{1}{3}x^3 + o(x^3) \]
+		      \end{itemize}
+		\item \textbf{Use the Known Maclaurin Series for the Outer Function ($\sin$)}
+		      \begin{itemize}
+			      \item Recall the Maclaurin series for $\sin(z)$:
+			            \[ \sin(z) = z - \frac{z^3}{6} + o(z^3) \]
+		      \end{itemize}
+		\item \textbf{Substitute the Series for $G(x)$ into the Series for $\sin(z)$}
+		      \begin{itemize}
+			      \item Replace $z$ with $G(x) = x - \frac{1}{3}x^3 + o(x^3)$:
+			            \[ F(x) = \sin(G(x)) = \left(x - \frac{1}{3}x^3 + o(x^3)\right) - \frac{1}{6}\left(x - \frac{1}{3}x^3 + o(x^3)\right)^3 + o\left((G(x))^3\right) \]
+			      \item Since $G(x) \approx x$ for $x \to 0$, we have $o((G(x))^3) = o(x^3)$.
+			      \item Expand and keep terms up to $x^3$:
+			            \[ \left(x - \frac{1}{3}x^3 + o(x^3)\right)^3 = (x + o(x))^3 = x^3 + o(x^3) \]
+			      \item Substitute back:
+			            \[ F(x) = \left(x - \frac{1}{3}x^3\right) - \frac{1}{6}(x^3) + o(x^3) \]
+			            \[ F(x) = x - \left(\frac{1}{3} + \frac{1}{6}\right)x^3 + o(x^3) = x - \frac{2+1}{6}x^3 + o(x^3) = x - \frac{3}{6}x^3 + o(x^3) \]
+			            \[ F(x) = x - \frac{1}{2}x^3 + o(x^3) \]
+		      \end{itemize}
+		\item \textbf{Result: Maclaurin Polynomial}
+		      \begin{itemize}
+			      \item The Maclaurin polynomial of order 3 for $F(x)$ is $P_3(x) = x - \frac{1}{2}x^3$.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Proving Existence and Uniqueness of Solutions Involving Integral Functions]
+	\textbf{Key Question:} How to prove that the equation $f(x) = 1-x$, where $f(x) = \int_0^x e^{-t^2} dt$, has a unique solution?
+	\begin{itemize}
+		\item \textbf{Reformulate the Problem}
+		      \begin{itemize}
+			      \item Define a new function $g(x) = f(x) - (1-x) = f(x) + x - 1$.
+			      \item The original problem is equivalent to proving that $g(x) = 0$ has exactly one solution (a unique zero).
+		      \end{itemize}
+		\item \textbf{Prove Existence of a Zero (Intermediate Value Theorem)}
+		      \begin{itemize}
+			      \item \textbf{Continuity:} $f(x)$ is continuous because it's an integral function of a continuous integrand ($e^{-t^2}$). The term $x-1$ is also continuous. Therefore, $g(x)$ is continuous on $\mathbb{R}$.
+			      \item \textbf{Find points with opposite signs:}
+			            \begin{itemize}
+				            \item Evaluate $g(0)$: $g(0) = f(0) + 0 - 1 = \int_0^0 e^{-t^2} dt - 1 = 0 - 1 = -1$. So, $g(0) < 0$.
+				            \item Evaluate the limit as $x \to +\infty$:
+				                  \[ \lim_{x\to+\infty} g(x) = \lim_{x\to+\infty} \left( \int_0^x e^{-t^2} dt + x - 1 \right) \]
+				                  The integral $\int_0^\infty e^{-t^2} dt$ converges to a finite value ($\frac{\sqrt{\pi}}{2}$). The term $x$ goes to $+\infty$.
+				                  \[ \lim_{x\to+\infty} g(x) = \left( \lim_{x\to+\infty} \int_0^x e^{-t^2} dt \right) + \left( \lim_{x\to+\infty} x \right) - 1 = \frac{\sqrt{\pi}}{2} + \infty - 1 = +\infty \]
+				            \item Since the limit is $+\infty$, there must exist some value $\bar{x}$ such that for all $x > \bar{x}$, $g(x) > 0$. Let's pick one such value $\bar{x}$.
+			            \end{itemize}
+			      \item \textbf{Apply IVT:} Since $g(x)$ is continuous on $[0, \bar{x}]$, $g(0) < 0$, and $g(\bar{x}) > 0$, the Intermediate Value Theorem guarantees that there exists at least one $x_0 \in (0, \bar{x})$ such that $g(x_0) = 0$.
+		      \end{itemize}
+		\item \textbf{Prove Uniqueness of the Zero (Monotonicity)}
+		      \begin{itemize}
+			      \item \textbf{Calculate the derivative $g'(x)$:}
+			            \[ g'(x) = \frac{d}{dx} (f(x) + x - 1) = f'(x) + 1 \]
+			      \item Apply the Fundamental Theorem of Calculus to find $f'(x)$:
+			            \[ f'(x) = \frac{d}{dx} \left( \int_0^x e^{-t^2} dt \right) = e^{-x^2} \]
+			      \item Substitute back into $g'(x)$:
+			            \[ g'(x) = e^{-x^2} + 1 \]
+			      \item \textbf{Analyze the sign of $g'(x)$:} Since $e^{-x^2} > 0$ for all real $x$, we have $g'(x) = e^{-x^2} + 1 > 0 + 1 = 1$.
+			      \item Since $g'(x) > 0$ for all $x \in \mathbb{R}$, the function $g(x)$ is strictly increasing on its entire domain.
+		      \end{itemize}
+		\item \textbf{Conclusion}
+		      \begin{itemize}
+			      \item We have shown that $g(x)=0$ has at least one solution (by IVT).
+			      \item We have shown that $g(x)$ is strictly increasing, which means it can cross the x-axis (equal zero) at most once.
+			      \item Therefore, the equation $g(x)=0$ has exactly one unique solution. This implies the original equation $f(x)=1-x$ also has a unique solution.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Finding Order and Principal Part for Functions with Integrals (Derivative Method)]
+	\textbf{Key Question:} Determine the order and principal part of $G(x) = x - \int_0^x e^{-(t+x)^2} dt$ as $x \to 0$.
+	\begin{itemize}
+		\item \textbf{Strategy: Analyze the Derivative $G'(x)$}
+		      \begin{itemize}
+			      \item It's often easier to find the Maclaurin expansion (order/principal part) of the derivative first, and then integrate.
+			      \item \textbf{Simplify the integral (Optional Variable Change):} Let $z=t+x$, $dz=dt$. Limits change from $t \in [0, x]$ to $z \in [x, 2x]$.
+			            \[ G(x) = x - \int_x^{2x} e^{-z^2} dz \]
+			      \item \textbf{Rewrite using a fixed lower limit:} Let $H(x) = \int_0^x e^{-t^2} dt$. Then $\int_x^{2x} e^{-z^2} dz = H(2x) - H(x)$.
+			            \[ G(x) = x - (H(2x) - H(x)) = x - H(2x) + H(x) \]
+		      \end{itemize}
+		\item \textbf{Compute the Derivative $G'(x)$}
+		      \begin{itemize}
+			      \item Apply differentiation rules, including the Fundamental Theorem of Calculus and Chain Rule:
+			            \[ G'(x) = \frac{d}{dx}(x) - \frac{d}{dx}(H(2x)) + \frac{d}{dx}(H(x)) \]
+			            \[ G'(x) = 1 - (H'(2x) \cdot 2) + H'(x) \]
+			            Since $H'(x) = e^{-x^2}$:
+			            \[ G'(x) = 1 - (e^{-(2x)^2} \cdot 2) + e^{-x^2} = 1 - 2e^{-4x^2} + e^{-x^2} \]
+		      \end{itemize}
+		\item \textbf{Find Maclaurin Expansion of $G'(x)$}
+		      \begin{itemize}
+			      \item Use the known expansion $e^u = 1 + u + o(u)$ for $u \to 0$.
+			      \item $e^{-4x^2} = 1 - 4x^2 + o(x^2)$
+			      \item $e^{-x^2} = 1 - x^2 + o(x^2)$
+			      \item Substitute into $G'(x)$:
+			            \[ G'(x) = 1 - 2(1 - 4x^2 + o(x^2)) + (1 - x^2 + o(x^2)) \]
+			            \[ G'(x) = 1 - 2 + 8x^2 + o(x^2) + 1 - x^2 + o(x^2) \]
+			            \[ G'(x) = (1-2+1) + (8x^2 - x^2) + o(x^2) = 7x^2 + o(x^2) \]
+			      \item The principal part of $G'(x)$ is $7x^2$, and its order is 2.
+		      \end{itemize}
+		\item \textbf{Determine Order and Principal Part of $G(x)$}
+		      \begin{itemize}
+			      \item Since $G'(x) \sim 7x^2$ as $x \to 0$, and $G(0) = 0 - \int_0^0 \dots = 0$, we can integrate the principal part of $G'(x)$ to find the principal part of $G(x)$:
+			            \[ G(x) \approx \int_0^x 7t^2 dt = 7 \left[ \frac{t^3}{3} \right]_0^x = \frac{7}{3}x^3 \]
+			      \item The principal part of $G(x)$ is $\frac{7}{3}x^3$.
+			      \item The order of $G(x)$ is 3.
+			      \item Thus, $G(x) = \frac{7}{3}x^3 + o(x^3)$ for $x \to 0$.
+		      \end{itemize}
+		\item \textbf{Verification (Using L'Hôpital's Rule on the Remainder)}
+		      \begin{itemize}
+			      \item To confirm $G(x) = \frac{7}{3}x^3 + o(x^3)$, we must show $\lim_{x \to 0} \frac{G(x) - \frac{7}{3}x^3}{x^3} = 0$.
+			      \item Apply L'Hôpital's Rule (since form is $\frac{0}{0}$):
+			            \[ \lim_{x \to 0} \frac{G'(x) - \frac{d}{dx}(\frac{7}{3}x^3)}{\frac{d}{dx}(x^3)} = \lim_{x \to 0} \frac{G'(x) - 7x^2}{3x^2} \]
+			      \item Substitute the expansion of $G'(x)$:
+			            \[ \lim_{x \to 0} \frac{(7x^2 + o(x^2)) - 7x^2}{3x^2} = \lim_{x \to 0} \frac{o(x^2)}{3x^2} = 0 \]
+			      \item The limit is 0, confirming the order and principal part.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\begin{cascade}[Qualitative Graph Sketching of Integral Functions near x=0]
+	\textbf{Key Question:} How to draw a qualitative graph of $f(x) = \int_0^x \frac{e^t}{2t^2+1} dt$ in a neighborhood of $x=0$?
+	\begin{itemize}
+		\item \textbf{Strategy: Analyze Local Behavior using Derivatives at x=0}
+		      \begin{itemize}
+			      \item The behavior of a function near a point (like $x=0$) is determined by its value and the values of its derivatives at that point. This is the foundation of Taylor series approximations.
+		      \end{itemize}
+		\item \textbf{Calculate $f(0)$}
+		      \begin{itemize}
+			      \item Substitute $x=0$ into the integral definition:
+			            \[ f(0) = \int_0^0 \frac{e^t}{2t^2+1} dt = 0 \]
+			      \item The function passes through the origin $(0, 0)$.
+		      \end{itemize}
+		\item \textbf{Calculate $f'(x)$ and $f'(0)$}
+		      \begin{itemize}
+			      \item Apply the Fundamental Theorem of Calculus (Part 1):
+			            \[ f'(x) = \frac{d}{dx} \left( \int_0^x \frac{e^t}{2t^2+1} dt \right) = \frac{e^x}{2x^2+1} \]
+			      \item Evaluate at $x=0$:
+			            \[ f'(0) = \frac{e^0}{2(0)^2+1} = \frac{1}{1} = 1 \]
+			      \item The slope of the tangent line at the origin is $1$. The function is increasing at $x=0$.
+		      \end{itemize}
+		\item \textbf{Calculate $f''(x)$ and $f''(0)$}
+		      \begin{itemize}
+			      \item Differentiate $f'(x)$ using the quotient rule $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$:
+			            \[ u = e^x \implies u' = e^x \]
+			            \[ v = 2x^2+1 \implies v' = 4x \]
+			            \[ f''(x) = \frac{(e^x)(2x^2+1) - (e^x)(4x)}{(2x^2+1)^2} = \frac{e^x(2x^2 - 4x + 1)}{(2x^2+1)^2} \]
+			      \item Evaluate at $x=0$:
+			            \[ f''(0) = \frac{e^0(2(0)^2 - 4(0) + 1)}{(2(0)^2+1)^2} = \frac{1(1)}{(1)^2} = 1 \]
+			      \item Since $f''(0) > 0$, the function is concave up at $x=0$.
+		      \end{itemize}
+		\item \textbf{Sketching the Graph near x=0}
+		      \begin{itemize}
+			      \item The graph passes through $(0, 0)$.
+			      \item The tangent line at $(0, 0)$ has a slope of $1$ (like the line $y=x$).
+			      \item The graph is concave up at $(0, 0)$, meaning it lies above its tangent line near the point of tangency.
+			      \item Combining these: Start at the origin, draw a curve that is initially tangent to $y=x$ and curves upwards (concave up).
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\begin{cascade}[Limit Computation using Integral Inequalities and Squeeze Theorem]
+	\textbf{Key Question:} Calculate the limit $L = \lim_{x \to 0^+} x \int_{x-x^2}^x \frac{dt}{\sin^3 t}$, if it exists.
+	\begin{itemize}
+		\item \textbf{Step 1: Analyze Integrand and Integration Interval}
+		      \begin{itemize}
+			      \item The integration variable is $t$, and the interval is $[x-x^2, x]$.
+			      \item As $x \to 0^+$, both $x$ and $x-x^2 = x(1-x)$ approach $0^+$. Thus, $t \to 0^+$.
+			      \item For $t \in (0, \pi/2)$, $\sin t$ is positive and strictly increasing.
+			      \item Consequently, $\sin^3 t$ is also positive and strictly increasing for $t \in (0, \pi/2)$.
+			      \item Therefore, the integrand $g(t) = \frac{1}{\sin^3 t}$ is positive and strictly decreasing for $t$ in the interval $(0, \pi/2)$.
+		      \end{itemize}
+		\item \textbf{Step 2: Establish Inequalities for the Integrand}
+		      \begin{itemize}
+			      \item Since $t \in [x-x^2, x]$ and $g(t) = \frac{1}{\sin^3 t}$ is decreasing on this interval (for sufficiently small positive $x$), the minimum value of $g(t)$ occurs at $t=x$ and the maximum value occurs at $t=x-x^2$.
+			      \item For $t \in [x-x^2, x]$, we have:
+			            \[ \frac{1}{\sin^3 x} \le \frac{1}{\sin^3 t} \le \frac{1}{\sin^3(x-x^2)} \]
+		      \end{itemize}
+		\item \textbf{Step 3: Integrate the Inequalities}
+		      \begin{itemize}
+			      \item Integrate all parts of the inequality over the interval $[x-x^2, x]$. Since the bounds $\frac{1}{\sin^3 x}$ and $\frac{1}{\sin^3(x-x^2)}$ are constant with respect to $t$, we get:
+			            \[ \int_{x-x^2}^x \frac{1}{\sin^3 x} dt \le \int_{x-x^2}^x \frac{1}{\sin^3 t} dt \le \int_{x-x^2}^x \frac{1}{\sin^3(x-x^2)} dt \]
+			      \item The length of the integration interval is $x - (x-x^2) = x^2$.
+			            \[ \frac{1}{\sin^3 x} \cdot x^2 \le \int_{x-x^2}^x \frac{1}{\sin^3 t} dt \le \frac{1}{\sin^3(x-x^2)} \cdot x^2 \]
+			            \[ \frac{x^2}{\sin^3 x} \le \int_{x-x^2}^x \frac{1}{\sin^3 t} dt \le \frac{x^2}{\sin^3(x-x^2)} \]
+		      \end{itemize}
+		\item \textbf{Step 4: Incorporate the External Factor and Compute Limits}
+		      \begin{itemize}
+			      \item Multiply the inequality by $x$ (note $x > 0$ as $x \to 0^+$):
+			            \[ \frac{x^3}{\sin^3 x} \le x \int_{x-x^2}^x \frac{1}{\sin^3 t} dt \le \frac{x^3}{\sin^3(x-x^2)} \]
+			      \item Compute the limit of the lower bound as $x \to 0^+$:
+			            \[ \lim_{x \to 0^+} \frac{x^3}{\sin^3 x} = \lim_{x \to 0^+} \left(\frac{x}{\sin x}\right)^3 = (1)^3 = 1 \]
+			            (using the standard limit $\lim_{u \to 0} \frac{\sin u}{u} = 1$)
+			      \item Compute the limit of the upper bound as $x \to 0^+$:
+			            \[ \lim_{x \to 0^+} \frac{x^3}{\sin^3(x-x^2)} = \lim_{x \to 0^+} \left(\frac{x}{\sin(x-x^2)}\right)^3 \]
+			            We use $\sin(x-x^2) \sim x-x^2$ as $x \to 0$.
+			            \[ \lim_{x \to 0^+} \left(\frac{x}{x-x^2}\right)^3 = \lim_{x \to 0^+} \left(\frac{x}{x(1-x)}\right)^3 = \lim_{x \to 0^+} \left(\frac{1}{1-x}\right)^3 = \left(\frac{1}{1-0}\right)^3 = 1 \]
+		      \end{itemize}
+		\item \textbf{Step 5: Apply the Squeeze Theorem}
+		      \begin{itemize}
+			      \item We have shown:
+			            \[ \lim_{x \to 0^+} \frac{x^3}{\sin^3 x} = 1 \]
+			            \[ \lim_{x \to 0^+} \frac{x^3}{\sin^3(x-x^2)} = 1 \]
+			            \[ \frac{x^3}{\sin^3 x} \le x \int_{x-x^2}^x \frac{1}{\sin^3 t} dt \le \frac{x^3}{\sin^3(x-x^2)} \]
+			      \item By the Squeeze Theorem, the limit of the middle expression must also be 1.
+			      \item Therefore, $L = \lim_{x \to 0^+} x \int_{x-x^2}^x \frac{dt}{\sin^3 t} = 1$.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Limit Computation using Mean Value Theorem and Squeeze Theorem]
+	\textbf{Key Question:} Calculate the limit $L = \lim_{x \to +\infty} x^3 \int_{x^2}^{x^2+x} \sin\left(\frac{1}{t^2}\right) dt$.
+	\begin{itemize}
+		\item \textbf{Step 1: Apply Mean Value Theorem for Integrals}
+		      \begin{itemize}
+			      \item \textbf{Theorem Statement:} If $f$ is continuous on $[a, b]$, there exists $c \in [a, b]$ such that $\int_a^b f(t) dt = f(c)(b-a)$.
+			      \item \textbf{Application:}
+			            \begin{itemize}
+				            \item Let $f(t) = \sin\left(\frac{1}{t^2}\right)$. This function is continuous on $[x^2, x^2+x]$ for large $x$ (since $x^2 > 0$).
+				            \item The interval length is $(x^2+x) - x^2 = x$.
+				            \item By the MVT for Integrals, there exists $z \in [x^2, x^2+x]$ such that:
+				                  \[ \int_{x^2}^{x^2+x} \sin\left(\frac{1}{t^2}\right) dt = \sin\left(\frac{1}{z^2}\right) \cdot x \]
+			            \end{itemize}
+			      \item \textbf{Rewrite the Limit:} Substitute this result back into the limit expression:
+			            \[ L = \lim_{x \to +\infty} x^3 \left[ x \sin\left(\frac{1}{z^2}\right) \right] = \lim_{x \to +\infty} x^4 \sin\left(\frac{1}{z^2}\right) \]
+			            where $z$ depends on $x$ and satisfies $x^2 \le z \le x^2+x$.
+		      \end{itemize}
+		\item \textbf{Step 2: Establish Bounds using $z \in [x^2, x^2+x]$}
+		      \begin{itemize}
+			      \item From $x^2 \le z \le x^2+x$, we have:
+			            \[ \frac{1}{x^2+x} \le \frac{1}{z} \le \frac{1}{x^2} \]
+			            Squaring (all terms are positive for large $x$):
+			            \[ \frac{1}{(x^2+x)^2} \le \frac{1}{z^2} \le \frac{1}{x^4} \]
+			      \item As $x \to +\infty$, all terms in the inequality approach $0^+$.
+			      \item Since $\sin u$ is an increasing function for $u$ near $0^+$, we can apply $\sin$ to the inequalities (for sufficiently large $x$):
+			            \[ \sin\left(\frac{1}{(x^2+x)^2}\right) \le \sin\left(\frac{1}{z^2}\right) \le \sin\left(\frac{1}{x^4}\right) \]
+		      \end{itemize}
+		\item \textbf{Step 3: Apply the Squeeze Theorem}
+		      \begin{itemize}
+			      \item Multiply the inequality by $x^4$ (which is positive):
+			            \[ x^4 \sin\left(\frac{1}{(x^2+x)^2}\right) \le x^4 \sin\left(\frac{1}{z^2}\right) \le x^4 \sin\left(\frac{1}{x^4}\right) \]
+			      \item \textbf{Limit of the Upper Bound:}
+			            \[ \lim_{x \to +\infty} x^4 \sin\left(\frac{1}{x^4}\right) \]
+			            Use the standard limit $\lim_{u \to 0} \frac{\sin u}{u} = 1$. Let $u = 1/x^4$. As $x \to +\infty$, $u \to 0^+$.
+			            \[ = \lim_{u \to 0^+} \frac{1}{u} \sin(u) = 1 \]
+			      \item \textbf{Limit of the Lower Bound:}
+
+			            Let $v = 1/(x^2+x)^2$. As $x \to +\infty$, $v \to 0^+$. Use $\sin v \sim v$ for $v \to 0$.
+			            \[ \lim_{x \to +\infty} x^4 \sin\left(\frac{1}{(x^2+x)^2}\right) \]
+			            \[ = \lim_{x \to +\infty} x^4 \cdot \frac{1}{(x^2+x)^2} = \lim_{x \to +\infty} \frac{x^4}{(x^2(1+1/x))^2} = \lim_{x \to +\infty} \frac{x^4}{x^4(1+1/x)^2} = 1 \]
+			      \item \textbf{Conclusion:} Since the expression $x^4 \sin(1/z^2)$ is squeezed between two functions that both tend to 1 as $x \to +\infty$, by the Squeeze Theorem (Teorema dei Carabinieri):
+			            \[ L = \lim_{x \to +\infty} x^4 \sin\left(\frac{1}{z^2}\right) = 1 \]
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\clearpage
+
+\subsection{Improper Integral exercises}
+
+\subsubsection{Exercises using definition}
+
+\subsubsection{Exercises using the comparison criterion}
+
+\subsubsection{Exercises using the asymptotic comparison criterion }
+
+\clearpage
 
 % Add further cascade schemes about integrals here
