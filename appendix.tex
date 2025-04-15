@@ -1,0 +1,128 @@
+% appendix.tex
+\section*{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
+\addcontentsline{toc}{section}{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
+
+\subsection*{Taylor and Maclaurin Polynomials}
+
+\begin{cascade}[General Taylor and Maclaurin Formulas]
+	\textbf{Taylor Polynomial of order $n$ for $f(x)$ at $x=a$:}
+	\[
+		T_n(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n
+	\]
+	\textbf{Maclaurin Polynomial:} Taylor polynomial at $a=0$:
+	\[
+		T_n(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \cdots + \frac{f^{(n)}(0)}{n!}x^n
+	\]
+	\textbf{Remainder (Lagrange form):}
+	\[
+		R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}, \quad \text{for some } \xi \text{ between } a \text{ and } x
+	\]
+\end{cascade}
+
+\begin{cascade}[Maclaurin Series for Major Functions]
+	\textbf{Exponential:}
+	\[
+		e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \sum_{n=0}^\infty \frac{x^n}{n!}
+	\]
+	\textbf{Sine:}
+	\[
+		\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}
+	\]
+	\textbf{Cosine:}
+	\[
+		\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots = \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}
+	\]
+	\textbf{Tangent (first terms):}
+	\[
+		\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + o(x^7)
+	\]
+	\textbf{Arctangent:}
+	\[
+		\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1}
+	\]
+	\textbf{Natural Logarithm:}
+	\[
+		\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \sum_{n=1}^\infty (-1)^{n+1} \frac{x^n}{n}, \quad |x| < 1
+	\]
+	\textbf{Binomial Series:} For $|x|<1$, $\alpha \in \mathbb{R}$,
+	\[
+		(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \frac{\alpha(\alpha-1)(\alpha-2)}{3!}x^3 + \cdots
+	\]
+	\textbf{Inverse:}
+	\[
+		\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots = \sum_{n=0}^\infty x^n, \quad |x| < 1
+	\]
+\end{cascade}
+
+\begin{cascade}[Examples: Maclaurin Polynomials (Order 3 or 4)]
+	\begin{itemize}
+		\item $e^x = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + o(x^3)$
+		\item $\sin x = x - \frac{x^3}{6} + o(x^3)$
+		\item $\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} + o(x^4)$
+		\item $\tan x = x + \frac{x^3}{3} + o(x^3)$
+		\item $\arctan x = x - \frac{x^3}{3} + o(x^3)$
+		\item $\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} + o(x^3)$
+		\item $(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2}x^2 + \frac{\alpha(\alpha-1)(\alpha-2)}{6}x^3 + o(x^3)$
+	\end{itemize}
+\end{cascade}
+
+\subsection*{Standard Limits}
+
+\begin{cascade}[Standard Limits as $x \to 0$]
+	\begin{itemize}
+		\item $\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\tan x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arcsin x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arctan x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{e^x - 1}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{a^x - 1}{x} = \ln a$ ($a>0$)
+		\item $\displaystyle \lim_{x \to 0} \frac{(1+x)^\alpha - 1}{x} = \alpha$ ($\alpha \in \mathbb{R}$)
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{x}{\ln(1+x)} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\sin(ax)}{x} = a$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arctan(ax)}{x} = a$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+\sin x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{e^{ax} - 1}{x} = a$
+		\item $\displaystyle \lim_{x \to 0} \frac{(1+x)^n - 1}{x} = n$ ($n \in \mathbb{N}$)
+	\end{itemize}
+\end{cascade}
+
+\begin{cascade}[Standard Limits as $x \to \infty$]
+	\begin{itemize}
+		\item $\displaystyle \lim_{x \to \infty} \frac{\ln x}{x} = 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{x^a}{e^x} = 0$ for any $a > 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{e^{ax}}{x^b} = \begin{cases}
+				      0      & a < 0 \\
+				      \infty & a > 0
+			      \end{cases}$
+		\item $\displaystyle \lim_{x \to \infty} \left(1 + \frac{a}{x}\right)^x = e^a$
+		\item $\displaystyle \lim_{x \to \infty} x^{1/x} = 1$
+		\item $\displaystyle \lim_{x \to \infty} \frac{\ln x}{x^a} = 0$ for $a > 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{x^a}{\ln x} = \infty$ for $a > 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{x^a}{x^b} = \begin{cases}
+				      0      & a < b \\
+				      1      & a = b \\
+				      \infty & a > b
+			      \end{cases}$
+		\item $\displaystyle \lim_{x \to \infty} \arctan x = \frac{\pi}{2}$
+		\item $\displaystyle \lim_{x \to \infty} \frac{a^x}{b^x} = 0$ if $0 < a < b$
+	\end{itemize}
+\end{cascade}
+
+\begin{cascade}[Other Useful Limits]
+	\begin{itemize}
+		\item $\displaystyle \lim_{x \to 0} (1 + x)^{1/x} = e$
+		\item $\displaystyle \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{a^x - 1}{x} = \ln a$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+\sin x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arctan x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\tan x}{x} = 1$
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\textit{These formulas and limits are fundamental tools for solving calculus problems, especially for evaluating limits, approximating functions, and analyzing local behavior.}
