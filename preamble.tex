@@ -8,6 +8,7 @@
 \usepackage{geometry}
 \geometry{a4paper, margin=2.5cm}
 
+\usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows.meta, positioning}
@@ -21,6 +22,7 @@
 }
 
 \usepackage{titlesec}
+
 \titleformat{\section}
 {\normalfont\Large\bfseries\color{black}}
 {\thesection}{1em}{}
@@ -33,11 +35,15 @@
 
 \usepackage{tcolorbox}
 \tcbuselibrary{skins, breakable}
+
+\definecolor{cascadegray}{RGB}{245,245,245} % very light gray
+\definecolor{cascadegrayframe}{RGB}{80,80,80} % dark gray
+
 \newtcolorbox{cascade}[1][]{
 	enhanced,
-	colback=white,
-	colframe=black!80,
-	coltitle=black,
+	colback=cascadegray,
+	colframe=cascadegrayframe,
+	coltitle=cascadegray,
 	fonttitle=\bfseries,
 	title=#1,
 	boxrule=0.6mm,
