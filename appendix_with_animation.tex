@@ -1,0 +1,340 @@
+% appendix.tex
+\section{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
+\addcontentsline{toc}{section}{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
+
+\subsection{Taylor and Maclaurin Polynomials}
+
+\begin{cascade}[General Taylor and Maclaurin Formulas]
+	\textbf{Taylor Polynomial of order $n$ for $f(x)$ at $x=a$:}
+	\[
+		T_n(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n
+	\]
+	\textbf{Maclaurin Polynomial:} Taylor polynomial at $a=0$:
+	\[
+		T_n(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \cdots + \frac{f^{(n)}(0)}{n!}x^n
+	\]
+	\textbf{Remainder (Lagrange form):}
+	\[
+		R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}, \quad \text{for some } \xi \text{ between } a \text{ and } x
+	\]
+\end{cascade}
+
+\begin{cascade}[Maclaurin Series for Major Functions]
+	\textbf{Exponential:}
+	\[
+		e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \sum_{n=0}^\infty \frac{x^n}{n!}
+	\]
+	\textbf{Sine:}
+	\[
+		\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!}
+	\]
+	\textbf{Cosine:}
+	\[
+		\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots = \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}
+	\]
+	\textbf{Tangent (first terms):}
+	\[
+		\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + o(x^7)
+	\]
+	\textbf{Arctangent:}
+	\[
+		\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1}
+	\]
+	\textbf{Natural Logarithm:}
+	\[
+		\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \sum_{n=1}^\infty (-1)^{n+1} \frac{x^n}{n}, \quad |x| < 1
+	\]
+	\textbf{Binomial Series:} For $|x|<1$, $\alpha \in \mathbb{R}$,
+	\[
+		(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \frac{\alpha(\alpha-1)(\alpha-2)}{3!}x^3 + \cdots
+	\]
+	\textbf{Inverse:}
+	\[
+		\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots = \sum_{n=0}^\infty x^n, \quad |x| < 1
+	\]
+\end{cascade}
+
+\begin{cascade}[Examples: Maclaurin Polynomials (Order 3 or 4)]
+	\begin{itemize}
+		\item $e^x = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + o(x^3)$
+		\item $\sin x = x - \frac{x^3}{6} + o(x^3)$
+		\item $\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} + o(x^4)$
+		\item $\tan x = x + \frac{x^3}{3} + o(x^3)$
+		\item $\arctan x = x - \frac{x^3}{3} + o(x^3)$
+		\item $\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} + o(x^3)$
+		\item $(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2}x^2 + \frac{\alpha(\alpha-1)(\alpha-2)}{6}x^3 + o(x^3)$
+	\end{itemize}
+\end{cascade}
+
+\subsection*{Standard Limits}
+
+\begin{cascade}[Standard Limits as $x \to 0$]
+	\begin{itemize}
+		\item $\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\tan x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arcsin x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arctan x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{e^x - 1}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{a^x - 1}{x} = \ln a$ ($a>0$)
+		\item $\displaystyle \lim_{x \to 0} \frac{(1+x)^\alpha - 1}{x} = \alpha$ ($\alpha \in \mathbb{R}$)
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{x}{\ln(1+x)} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\sin(ax)}{x} = a$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arctan(ax)}{x} = a$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+\sin x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{e^{ax} - 1}{x} = a$
+		\item $\displaystyle \lim_{x \to 0} \frac{(1+x)^n - 1}{x} = n$ ($n \in \mathbb{N}$)
+	\end{itemize}
+\end{cascade}
+
+\begin{cascade}[Standard Limits as $x \to \infty$]
+	\begin{itemize}
+		\item $\displaystyle \lim_{x \to \infty} \frac{\ln x}{x} = 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{x^a}{e^x} = 0$ for any $a > 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{e^{ax}}{x^b} = \begin{cases}
+				      0      & a < 0 \\
+				      \infty & a > 0
+			      \end{cases}$
+		\item $\displaystyle \lim_{x \to \infty} \left(1 + \frac{a}{x}\right)^x = e^a$
+		\item $\displaystyle \lim_{x \to \infty} x^{1/x} = 1$
+		\item $\displaystyle \lim_{x \to \infty} \frac{\ln x}{x^a} = 0$ for $a > 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{x^a}{\ln x} = \infty$ for $a > 0$
+		\item $\displaystyle \lim_{x \to \infty} \frac{x^a}{x^b} = \begin{cases}
+				      0      & a < b \\
+				      1      & a = b \\
+				      \infty & a > b
+			      \end{cases}$
+		\item $\displaystyle \lim_{x \to \infty} \arctan x = \frac{\pi}{2}$
+		\item $\displaystyle \lim_{x \to \infty} \frac{a^x}{b^x} = 0$ if $0 < a < b$
+	\end{itemize}
+\end{cascade}
+
+\begin{cascade}[Other Useful Limits]
+	\begin{itemize}
+		\item $\displaystyle \lim_{x \to 0} (1 + x)^{1/x} = e$
+		\item $\displaystyle \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{a^x - 1}{x} = \ln a$
+		\item $\displaystyle \lim_{x \to 0} \frac{\ln(1+\sin x)}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\arctan x}{x} = 1$
+		\item $\displaystyle \lim_{x \to 0} \frac{\tan x}{x} = 1$
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\textit{These formulas and limits are fundamental tools for solving calculus problems, especially for evaluating limits, approximating functions, and analyzing local behavior.}
+
+\begin{figure}[htbp]
+	\centering % Center the whole figure content
+
+	% --- Animation 1: Integral from 0 to 1 (Convergent, alpha=-2) ---
+	\begin{minipage}{0.40\textwidth}
+		\centering
+		\def\numFrames{40}
+		\def\alphaVal{-2}
+		\def\epsVal{0} % Small value instead of exact 0 for calculation/plotting
+		\def\xminPlot{0}
+		\def\xmaxPlot{1.5}
+		\def\yminPlot{0}
+		\def\ymaxPlot{2.25} % Adjusted ymax to show steepness
+		\def\xminCalc{0.001} % Lower bound for calculation (approaching 0)
+		\def\xmaxCalc{1.5}   % Upper bound for calculation
+
+		\begin{animateinline}[controls,autoplay,loop]{10}
+			\multiframe{\numFrames}{i=0+1}{
+				% t decreases from xmaxCalc down towards xminCalc (epsVal)
+				\pgfmathsetmacro{\t}{max(\xminCalc, \xmaxCalc - (\i/(\numFrames-1)) * (\xmaxCalc - \xminCalc))}
+				% Calculate function value at t, capped reasonably for display
+				\pgfmathsetmacro{\ft}{min(\t^(-\alphaVal), \ymaxPlot*1.5)}
+
+				\begin{tikzpicture}
+					\begin{axis}[
+							axis lines=middle, xlabel={$x$},
+							title={$\int_0^1 \frac{1}{x^{\alpha}} dx$, $\alpha = \pgfmathprintnumber{\alphaVal}$ (Convergent)},
+							xmin=\xminPlot, xmax=\xmaxPlot,
+							ymin=\yminPlot, ymax=\ymaxPlot,
+							clip=false,
+							domain=\xminCalc:\xmaxPlot, % Plotting domain
+							samples=100, smooth, no markers,
+							width=\linewidth, % Use minipage width
+							height=8cm,
+						]
+
+						\addplot [blue, thick, domain=\xminCalc:\xmaxPlot] {x^(-\alphaVal)};
+
+						% Shade the area under the curve from t to xmaxCalc (1.0)
+						\pgfmathparse{ifthenelse(\t<\xmaxCalc, 1, 0)}
+						\ifnum\pgfmathresult=1
+							\addplot [fill=red, fill opacity=0.5, draw=none, domain=\t:\xmaxCalc, samples=50]
+							{x^(-\alphaVal)} \closedcycle;
+							% Using \closedcycle is simpler here: plots function, then --(xmax,0)--(xmin,0)--cycle
+						\fi
+
+						% Dashed line at x=t
+						\draw [dashed, gray] (axis cs:\t, 0) -- (axis cs:\t, {\ft});
+						\node [below right, gray, inner sep=1pt] at (axis cs:\t, 0) {$t$};
+					\end{axis}
+				\end{tikzpicture}
+			} % End multiframe
+		\end{animateinline}
+		%\caption*{Anim 1: $\int_0^1 1/x^2 dx$} % Optional caption per animation
+	\end{minipage}%
+	\hfill % Space between columns
+	% --- Animation 2: Integral from 0 to 1 (Divergent, alpha=2) ---
+	% Identical to Animation 1 as per request
+	\begin{minipage}{0.40\textwidth}
+		\centering
+		\def\numFrames{40}
+		\def\alphaVal{2}
+		\def\epsVal{0.6}
+		\def\xminPlot{0}
+		\def\xmaxPlot{1.5}
+		\def\yminPlot{0}
+		\def\ymaxPlot{3}
+		\def\xminCalc{\epsVal}
+		\def\xmaxCalc{1.5}
+
+		\begin{animateinline}[controls,autoplay,loop]{10}
+			\multiframe{\numFrames}{i=0+1}{
+				\pgfmathsetmacro{\t}{max(\xminCalc, \xmaxCalc - (\i/(\numFrames-1)) * (\xmaxCalc - \xminCalc))}
+				\pgfmathsetmacro{\ft}{min(\t^(-\alphaVal), \ymaxPlot*1.5)}
+
+				\begin{tikzpicture}
+					\begin{axis}[
+							axis lines=middle, xlabel={$x$},
+							title={$\int_0^1 \frac{1}{x^{\alpha}} dx$, $\alpha = \pgfmathprintnumber{\alphaVal}$ (Divergent)},
+							xmin=\xminPlot, xmax=\xmaxPlot,
+							ymin=\yminPlot, ymax=\ymaxPlot,
+							clip=false,
+							domain=\xminCalc:\xmaxPlot,
+							samples=100, smooth, no markers,
+							width=\linewidth, height=8cm,
+						]
+						\addplot [blue, thick, domain=\xminCalc:\xmaxPlot] {x^(-\alphaVal)};
+						\pgfmathparse{ifthenelse(\t<\xmaxCalc, 1, 0)}
+						\ifnum\pgfmathresult=1
+							\addplot [fill=red, fill opacity=0.5, draw=none, domain=\t:\xmaxCalc, samples=50]
+							{x^(-\alphaVal)} \closedcycle;
+						\fi
+						\draw [dashed, gray] (axis cs:\t, 0) -- (axis cs:\t, {\ft});
+						\node [below right, gray, inner sep=1pt] at (axis cs:\t, 0) {$t$};
+					\end{axis}
+				\end{tikzpicture}
+			} % End multiframe
+		\end{animateinline}
+		%\caption*{Anim 2: $\int_0^1 1/x^2 dx$}
+	\end{minipage}
+	\caption{Animations illustrating the area accumulation for improper integrals with $\alpha=2$. Top row: $\int_0^1 1/x^2 dx$ (divergent). Bottom row: $\int_1^\infty 1/x^2 dx$ (convergent).}
+	\label{fig:asdf}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	% --- Animation 3: Integral from 1 to Inf (Convergent, alpha=2) ---
+	\begin{minipage}{0.40\textwidth}
+		\centering
+		\def\numFrames{40}
+		\def\alphaVal{2}
+		\def\xminPlot{0}
+		\def\xmaxPlot{10}  % Upper plot limit
+		\def\yminPlot{0}
+		\def\ymaxPlot{1} % Adjusted ymax for this function shape
+		\def\xminCalc{1.0} % Lower bound for calculation
+		\def\TmaxAnim{10}  % Effective "infinity" for animation sweep t
+
+		\begin{animateinline}[controls,autoplay,loop]{10}
+			\multiframe{\numFrames}{i=0+1}{
+				% t increases from xminCalc (1) up towards TmaxAnim
+				\pgfmathsetmacro{\t}{max(\xminCalc, \xminCalc + (\i/(\numFrames-1)) * (\TmaxAnim - \xminCalc))}
+				% Calculate function value at t
+				\pgfmathsetmacro{\ft}{\t^(-\alphaVal)}
+
+				\begin{tikzpicture}
+					\begin{axis}[
+							axis lines=middle, xlabel={$x$},
+							title={$\int_1^{+ \infty} \frac{1}{x^{\alpha}} dx$, $\alpha = \pgfmathprintnumber{\alphaVal}$ (Convergent)},
+							xmin=\xminPlot, xmax=\xmaxPlot,
+							ymin=\yminPlot, ymax=\ymaxPlot,
+							clip=false,
+							domain=\xminCalc:\xmaxPlot, % Plotting domain starts from 1
+							samples=100, smooth, no markers,
+							width=\linewidth, height=8cm,
+						]
+
+						\addplot [blue, thick, domain=\xminCalc:\xmaxPlot] {x^(-\alphaVal)};
+
+						% Shade the area under the curve from xminCalc (1.0) to t
+						\pgfmathparse{ifthenelse(\t>\xminCalc, 1, 0)}
+						\ifnum\pgfmathresult=1
+							\addplot [fill=green, fill opacity=0.5, draw=none, domain=\xminCalc:\t, samples=50]
+							{x^(-\alphaVal)} \closedcycle;
+						\fi
+
+						% Dashed line at x=t
+						\draw [dashed, gray] (axis cs:\t, 0) -- (axis cs:\t, {\ft});
+						\node [below right, gray, inner sep=1pt] at (axis cs:\t, 0) {$t$};
+					\end{axis}
+				\end{tikzpicture}
+			} % End multiframe
+		\end{animateinline}
+		%\caption*{Anim 3: $\int_1^\infty 1/x^2 dx$}
+	\end{minipage}%
+	\hfill % Space between columns
+	% --- Animation 4: Integral from 1 to Inf (Divergent, alpha=-2) ---
+	% Identical to Animation 3 as per request
+	\begin{minipage}{0.40\textwidth}
+		\centering
+		\def\numFrames{40}
+		\def\alphaVal{-2}
+		\def\xminPlot{0}
+		\def\xmaxPlot{2}
+		\def\yminPlot{0}
+		\def\ymaxPlot{4}
+		\def\xminCalc{0.1}
+		\def\TmaxAnim{2}
+
+		\begin{animateinline}[controls,autoplay,loop]{10}
+			\multiframe{\numFrames}{i=0+1}{
+				\pgfmathsetmacro{\t}{max(\xminCalc, \xminCalc + (\i/(\numFrames-1)) * (\TmaxAnim - \xminCalc))}
+				\pgfmathsetmacro{\ft}{\t^(-\alphaVal)}
+
+				\begin{tikzpicture}
+					\begin{axis}[
+							axis lines=middle, xlabel={$x$},
+							title={$\int_1^{+ \infty} \frac{1}{x^{\alpha}} dx$, $\alpha = \pgfmathprintnumber{\alphaVal}$ (Convergent)},
+							xmin=\xminPlot, xmax=\xmaxPlot,
+							ymin=\yminPlot, ymax=\ymaxPlot,
+							clip=false,
+							domain=\xminCalc:\xmaxPlot,
+							samples=100, smooth, no markers,
+							width=\linewidth, height=8cm,
+						]
+						\addplot [blue, thick, domain=\xminCalc:\xmaxPlot] {x^(-\alphaVal)};
+						\pgfmathparse{ifthenelse(\t>\xminCalc, 1, 0)}
+						\ifnum\pgfmathresult=1
+							\addplot [fill=green, fill opacity=0.5, draw=none, domain=\xminCalc:\t, samples=50]
+							{x^(-\alphaVal)} \closedcycle;
+						\fi
+						\draw [dashed, gray] (axis cs:\t, 0) -- (axis cs:\t, {\ft});
+						\node [below right, gray, inner sep=1pt] at (axis cs:\t, 0) {$t$};
+					\end{axis}
+				\end{tikzpicture}
+			} % End multiframe
+		\end{animateinline}
+		%\caption*{Anim 4: $\int_1^\infty 1/x^2 dx$}
+	\end{minipage}
+
+	\caption{Animations illustrating the area accumulation for improper integrals with $\alpha=2$. Top row: $\int_0^1 1/x^2 dx$ (divergent). Bottom row: $\int_1^\infty 1/x^2 dx$ (convergent).}
+	\label{fig:improper_integral_animations}
+\end{figure}
+
+\subsection*{Notes on Animations and Examples}
+
+\textbf{Disclaimer:} These animations require a PDF viewer that supports JavaScript animations embedded in PDFs, such as Adobe Acrobat Reader or Okular (on Linux). They may not work in all viewers (e.g., some browser-based viewers or Preview on macOS).
+
+\textbf{Interpretation:} The examples shown use $\alpha=2$. For the integral $\int_0^1 \frac{1}{x^\alpha} dx$, the animation visually suggests divergence as $t \to 0^+$ because the area being added grows increasingly rapidly near the vertical asymptote at $x=0$. For the integral $\int_1^\infty \frac{1}{x^\alpha} dx$, the animation visually suggests convergence as $t \to \infty$ because the area being added in the tail becomes progressively smaller.
+
+These animations provide an intuitive visual aid for understanding the concepts of convergence and divergence based on how the area accumulates. However, visual intuition can sometimes be misleading. For instance, while $\alpha=2$ leads to divergence for $\int_0^1 \frac{1}{x^\alpha} dx$, choosing $\alpha=0.5$ would result in a convergent integral ($\int_0^1 \frac{1}{\sqrt{x}} dx = 2$), even though the function still has a vertical asymptote at $x=0$. The graphical representation for $\alpha=0.5$ would look qualitatively similar (area accumulating near an asymptote), but the actual mathematical limit would be finite. Therefore, these specific animations illustrate the behaviour for $\alpha=2$ but do not cover all possible cases. Always rely on the mathematical definitions and tests for determining convergence or divergence.
