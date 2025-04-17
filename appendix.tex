@@ -1,8 +1,8 @@
 % appendix.tex
-\section*{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
+\section{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
 \addcontentsline{toc}{section}{Appendix: Taylor/Maclaurin Polynomials and Standard Limits}
 
-\subsection*{Taylor and Maclaurin Polynomials}
+\subsection{Taylor and Maclaurin Polynomials}
 
 \begin{cascade}[General Taylor and Maclaurin Formulas]
 	\textbf{Taylor Polynomial of order $n$ for $f(x)$ at $x=a$:}
@@ -13,10 +13,11 @@
 	\[
 		T_n(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \cdots + \frac{f^{(n)}(0)}{n!}x^n
 	\]
-	\textbf{Remainder (Lagrange form):}
+	\textbf{Remainder (Peano form):}
 	\[
-		R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}, \quad \text{for some } \xi \text{ between } a \text{ and } x
+		R_n(x) = o((x-a)^n) \quad \text{ as } x \to a
 	\]
+
 \end{cascade}
 
 \begin{cascade}[Maclaurin Series for Major Functions]
@@ -66,7 +67,7 @@
 	\end{itemize}
 \end{cascade}
 
-\subsection*{Standard Limits}
+\subsection{Standard Limits}
 
 \begin{cascade}[Standard Limits as $x \to 0$]
 	\begin{itemize}
