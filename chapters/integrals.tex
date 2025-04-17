@@ -24,8 +24,8 @@ In this section we will explore some types of exercises that can be asked in a t
 		      \end{itemize}
 		\item \textbf{Example}
 		      \begin{itemize}
-			      \item $G(x)  & = \int_a^{m(x)} f(t)\,dt = F(m(x))$
-			      \item $G'(x) & = F'(m(x)) \cdot m'(x) = f(m(x)) \cdot m'(x)$
+			      \item $G(x) = \int_a^{m(x)} f(t)\,dt = F(m(x))$
+			      \item $G'(x) = F'(m(x)) \cdot m'(x) = f(m(x)) \cdot m'(x)$
 		      \end{itemize}
 	\end{itemize}
 \end{cascade}
@@ -34,49 +34,49 @@ In this section we will explore some types of exercises that can be asked in a t
 
 \begin{cascade}[Computing the derivative of an integral with variable limits]
 	\textbf{Key Question:} How can we compute the derivative of a function defined by an integral where both limits depend on $x$, i.e., $G(x) = \int_{n(x)}^{m(x)} f(t) dt$?
+	\begin{itemize}
+		\item
+		      \textbf{1. Split the integral using a constant lower limit}
+		      \begin{itemize}
+			      \item Use the property of definite integrals: $\int_a^b f(t) dt = \int_c^b f(t) dt - \int_c^a f(t) dt$.
+			      \item Apply this to $G(x)$: Choose an arbitrary constant $a$ (often 0 or 1) in the domain of $f$.
+			            \[ G(x) = \int_{n(x)}^{m(x)} f(t) dt = \int_a^{m(x)} f(t) dt - \int_a^{n(x)} f(t) dt \]
+		      \end{itemize}
 
-	\additem{
-		\textbf{1. Split the integral using a constant lower limit}
-		\begin{itemize}
-			\item Use the property of definite integrals: $\int_a^b f(t) dt = \int_c^b f(t) dt - \int_c^a f(t) dt$.
-			\item Apply this to $G(x)$: Choose an arbitrary constant $a$ (often 0 or 1) in the domain of $f$.
-			      \[ G(x) = \int_{n(x)}^{m(x)} f(t) dt = \int_a^{m(x)} f(t) dt - \int_a^{n(x)} f(t) dt \]
-		\end{itemize}
-	}
-	\additem{
-		\textbf{2. Define an auxiliary function using Torricelli's Theorem}
-		\begin{itemize}
-			\item Let $F(x) = \int_a^x f(t) dt$.
-			\item By the Fundamental Theorem of Calculus (Part 1 / Torricelli's Theorem), $F'(x) = f(x)$.
-			\item Rewrite $G(x)$ using $F$: $G(x) = F(m(x)) - F(n(x))$.
-		\end{itemize}
-	}
-	\additem{
-		\textbf{3. Differentiate using the Chain Rule}
-		\begin{itemize}
-			\item Apply the chain rule to differentiate $F(m(x))$ and $F(n(x))$:
-			      \[ (F(h(x)))' = F'(h(x)) \cdot h'(x) = f(h(x)) \cdot h'(x) \]
-			\item Therefore, the derivative of $G(x)$ is:
-			      \[ G'(x) = \frac{d}{dx}[F(m(x))] - \frac{d}{dx}[F(n(x))] \]
-			      \[ G'(x) = F'(m(x)) \cdot m'(x) - F'(n(x)) \cdot n'(x) \]
-			      \[ G'(x) = f(m(x)) \cdot m'(x) - f(n(x)) \cdot n'(x) \]
-		\end{itemize}
-	}
-	\additem{
-		\textbf{4. Example}
-		\begin{itemize}
-			\item Compute the derivative of $G(x) = \int_x^{2x} \frac{\sin t}{t} dt$.
-			\item Here, $f(t) = \frac{\sin t}{t}$, $m(x) = 2x$, and $n(x) = x$.
-			\item Choose $a=1$ (any constant works). Let $F(x) = \int_1^x \frac{\sin t}{t} dt$.
-			\item Then $G(x) = F(2x) - F(x)$.
-			\item The derivatives are $m'(x) = 2$ and $n'(x) = 1$.
-			\item Applying the formula:
-			      \[ G'(x) = f(m(x)) \cdot m'(x) - f(n(x)) \cdot n'(x) \]
-			      \[ G'(x) = f(2x) \cdot 2 - f(x) \cdot 1 \]
-			      \[ G'(x) = \frac{\sin(2x)}{2x} \cdot 2 - \frac{\sin x}{x} \cdot 1 \]
-			      \[ G'(x) = \frac{\sin(2x)}{x} - \frac{\sin x}{x} = \frac{\sin(2x) - \sin x}{x} \]
-		\end{itemize}
-	}
+		\item
+		      \textbf{2. Define an auxiliary function using Torricelli's Theorem}
+		      \begin{itemize}
+			      \item Let $F(x) = \int_a^x f(t) dt$.
+			      \item By the Fundamental Theorem of Calculus (Part 1 / Torricelli's Theorem), $F'(x) = f(x)$.
+			      \item Rewrite $G(x)$ using $F$: $G(x) = F(m(x)) - F(n(x))$.
+		      \end{itemize}
+
+		\item
+		      \textbf{3. Differentiate using the Chain Rule}
+		      \begin{itemize}
+			      \item Apply the chain rule to differentiate $F(m(x))$ and $F(n(x))$:
+			            \[ (F(h(x)))' = F'(h(x)) \cdot h'(x) = f(h(x)) \cdot h'(x) \]
+			      \item Therefore, the derivative of $G(x)$ is:
+			            \[ G'(x) = \frac{d}{dx}[F(m(x))] - \frac{d}{dx}[F(n(x))] \]
+			            \[ G'(x) = F'(m(x)) \cdot m'(x) - F'(n(x)) \cdot n'(x) \]
+			            \[ G'(x) = f(m(x)) \cdot m'(x) - f(n(x)) \cdot n'(x) \]
+		      \end{itemize}
+
+		\item
+		      \textbf{4. Example}
+		      \begin{itemize}
+			      \item Compute the derivative of $G(x) = \int_x^{2x} \frac{\sin t}{t} dt$.
+			      \item Here, $f(t) = \frac{\sin t}{t}$, $m(x) = 2x$, and $n(x) = x$.
+			      \item Choose $a=1$ (any constant works). Let $F(x) = \int_1^x \frac{\sin t}{t} dt$.
+			      \item Then $G(x) = F(2x) - F(x)$.
+			      \item The derivatives are $m'(x) = 2$ and $n'(x) = 1$.
+			      \item Applying the formula:
+			            \[ G'(x) = f(m(x)) \cdot m'(x) - f(n(x)) \cdot n'(x) \]
+			            \[ G'(x) = f(2x) \cdot 2 - f(x) \cdot 1 \]
+			            \[ G'(x) = \frac{\sin(2x)}{2x} \cdot 2 - \frac{\sin x}{x} \cdot 1 \]
+			            \[ G'(x) = \frac{\sin(2x)}{x} - \frac{\sin x}{x} = \frac{\sin(2x) - \sin x}{x} \]
+		      \end{itemize}
+	\end{itemize}
 \end{cascade}
 
 \hfill
@@ -107,7 +107,6 @@ In this section we will explore some types of exercises that can be asked in a t
 				            \item $1 - e^{-x^2} - \sin^2 x = \frac{5}{6}x^4 + o(x^4)$
 				            \item $(x^2 - \sin^2 x) + (2x^2 - x\sin(2x)) = \frac{5}{3}x^4 + o(x^4)$
 			            \end{itemize}
-			            (Note: These approximations are taken from the image provided).
 			      \item Substitute the approximations back into the limit:
 			            \[ L = \lim_{x \to 0} \frac{\frac{5}{6}x^4 + o(x^4)}{\frac{5}{3}x^4 + o(x^4)} = \frac{5/6}{5/3} = \frac{5}{6} \cdot \frac{3}{5} = \frac{1}{2} \]
 		      \end{itemize}
@@ -396,15 +395,287 @@ In this section we will explore some types of exercises that can be asked in a t
 	\end{itemize}
 \end{cascade}
 
+\hfill
+
+\begin{cascade}[Integration using Weierstrass Substitution (Tangent Half-Angle)]
+	\textbf{Key Question:} How to calculate the integral $I = \int \frac{\tan x}{\sin x + \tan x} dx$?
+	\begin{itemize}
+		\item \textbf{Step 1: Simplify the Integrand}
+		      \begin{itemize}
+			      \item Rewrite $\tan x$ as $\sin x / \cos x$:
+			            \[ \frac{\tan x}{\sin x + \tan x} = \frac{\frac{\sin x}{\cos x}}{\sin x + \frac{\sin x}{\cos x}} \]
+			      \item Find a common denominator in the denominator:
+			            \[ \frac{\frac{\sin x}{\cos x}}{\sin x + \frac{\sin x}{\cos x}} = \frac{\frac{\sin x}{\cos x}}{\frac{\sin x \cos x + \sin x}{\cos x}} \]
+			      \item Simplify (assuming $\sin x \neq 0, \cos x \neq 0$):
+			            \[ \frac{\frac{\sin x}{\cos x}}{\frac{\sin x \cos x + \sin x}{\cos x}} = \frac{\sin x}{\sin x \cos x + \sin x} = \frac{\sin x}{\sin x (\cos x + 1)} = \frac{1}{\cos x + 1} \]
+			      \item The integral becomes significantly simpler: $I = \int \frac{1}{\cos x + 1} dx$.
+		      \end{itemize}
+		\item \textbf{Step 2: Apply the Weierstrass Substitution ($t = \tan(x/2)$)}
+		      \begin{itemize}
+			      \item \textbf{Motivation:} This substitution transforms rational functions of $\sin x$ and $\cos x$ into rational functions of $t$, which can often be integrated using standard techniques (like partial fractions, although not needed here).
+			      \item \textbf{The Substitution Formulas:}
+			            \begin{itemize}
+				            \item Let $\boxed{t = \tan\left(\frac{x}{2}\right)}$
+				            \item Then $\cos x = \frac{1-t^2}{1+t^2}$
+				            \item And $dx = \frac{2}{1+t^2} dt$
+				            \item (Also $\sin x = \frac{2t}{1+t^2}$, though not required for this specific simplified integral).
+			            \end{itemize}
+		      \end{itemize}
+		\item \textbf{Step 3: Substitute into the Simplified Integral}
+		      \begin{itemize}
+			      \item Replace $\cos x$ and $dx$ with their $t$-equivalents:
+			            \[ I = \int \underbrace{\frac{1}{\left(\frac{1-t^2}{1+t^2}\right) + 1}}_{\frac{1}{\cos x + 1}} \cdot \underbrace{\left(\frac{2}{1+t^2}\right) dt}_{dx} \]
+			      \item Simplify the first part (the integrand in terms of $x$ expressed in $t$):
+			            \[ \frac{1}{\frac{1-t^2 + 1+t^2}{1+t^2}} = \frac{1}{\frac{2}{1+t^2}} = \frac{1+t^2}{2} \]
+			      \item Substitute this back into the integral expression:
+			            \[ I = \int \left(\frac{1+t^2}{2}\right) \cdot \left(\frac{2}{1+t^2}\right) dt \]
+		      \end{itemize}
+		\item \textbf{Step 4: Evaluate the Integral in $t$}
+		      \begin{itemize}
+			      \item The integrand simplifies dramatically:
+			            \[ I = \int 1 \, dt \]
+			      \item Compute the straightforward integral:
+			            \[ I = t + C \]
+		      \end{itemize}
+		\item \textbf{Step 5: Substitute Back to $x$}
+		      \begin{itemize}
+			      \item Replace $t$ with its definition in terms of $x$:
+			            \[ I = \tan\left(\frac{x}{2}\right) + C \]
+		      \end{itemize}
+		\item \textbf{Result:} The integral evaluates to $\int \frac{\tan x}{\sin x + \tan x} dx = \tan\left(\frac{x}{2}\right) + C$.
+	\end{itemize}
+\end{cascade}
+
 \clearpage
 
 \subsection{Improper Integral exercises}
 
-\subsubsection{Exercises using definition}
+\begin{cascade}[Evaluating Improper Integrals using the Definition]
+	\textbf{Key Question:} How to compute the value of the improper integral $\int_0^1 \log x \, dx$?
+	\begin{itemize}
+		\item \textbf{Step 1: Identify the Point of Impropriety}
+		      \begin{itemize}
+			      \item The function $f(x) = \log x$ is defined on $(0, 1]$.
+			      \item The integral is improper because the integrand $\log x$ approaches $-\infty$ as $x$ approaches the lower limit of integration, $x=0$.
+		      \end{itemize}
+		\item \textbf{Step 2: Apply the Definition of Improper Integral}
+		      \begin{itemize}
+			      \item Replace the problematic lower limit $0$ with a variable $\epsilon$ and take the limit as $\epsilon$ approaches $0$ from the right side (since the interval is $(0, 1]$):
+			            \[ \int_0^1 \log x \, dx \overset{\text{def}}{=} \lim_{\epsilon \to 0^+} \int_\epsilon^1 \log x \, dx \]
+		      \end{itemize}
+		\item \textbf{Step 3: Find the Antiderivative}
+		      \begin{itemize}
+			      \item Compute the indefinite integral $\int \log x \, dx$ using integration by parts:
+			            \begin{itemize}
+				            \item Let $u = \log x \implies du = \frac{1}{x} dx$
+				            \item Let $dv = dx \implies v = x$
+			            \end{itemize}
+			            \[ \int \log x \, dx = uv - \int v \, du = x \log x - \int x \left(\frac{1}{x}\right) dx \]
+			            \[ = x \log x - \int 1 \, dx = x \log x - x + C = x(\log x - 1) + C \]
+			      \item An antiderivative is $F(x) = x(\log x - 1)$.
+		      \end{itemize}
+		\item \textbf{Step 4: Evaluate the Definite Integral and Compute the Limit}
+		      \begin{itemize}
+			      \item Use the antiderivative to evaluate the definite integral inside the limit (Fundamental Theorem of Calculus / Torricelli-Barrow):
+			            \[ \int_\epsilon^1 \log x \, dx = [x(\log x - 1)]_\epsilon^1 = (1(\log 1 - 1)) - (\epsilon(\log \epsilon - 1)) \]
+			            \[ = (1(0 - 1)) - (\epsilon \log \epsilon - \epsilon) = -1 - \epsilon \log \epsilon + \epsilon \]
+			      \item Now, compute the limit as $\epsilon \to 0^+$:
+			            \[ \lim_{\epsilon \to 0^+} (-1 - \epsilon \log \epsilon + \epsilon) \]
+			      \item Use the standard limit $\lim_{\epsilon \to 0^+} \epsilon \log \epsilon = 0$.
+			            \[ = -1 - 0 + 0 = -1 \]
+		      \end{itemize}
+		\item \textbf{Conclusion}
+		      \begin{itemize}
+			      \item Since the limit exists and is finite, the improper integral converges.
+			      \item The value of the integral is $\int_0^1 \log x \, dx = -1$.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
 
-\subsubsection{Exercises using the comparison criterion}
+\hfill
 
-\subsubsection{Exercises using the asymptotic comparison criterion }
+\begin{cascade}[Integration using Weierstrass Substitution (Tangent Half-Angle)]
+	\textbf{Key Question:} How to calculate the integral $I = \int \frac{\tan x}{\sin x + \tan x} dx$?
+	\begin{itemize}
+		\item \textbf{Step 1: Simplify the Integrand}
+		      \begin{itemize}
+			      \item Rewrite $\tan x$ as $\sin x / \cos x$:
+			            \[ \frac{\tan x}{\sin x + \tan x} = \frac{\frac{\sin x}{\cos x}}{\sin x + \frac{\sin x}{\cos x}} \]
+			      \item Find a common denominator in the denominator:
+			            \[ = \frac{\frac{\sin x}{\cos x}}{\frac{\sin x \cos x + \sin x}{\cos x}} \]
+			      \item Simplify (assuming $\sin x \neq 0, \cos x \neq 0$):
+			            \[ = \frac{\sin x}{\sin x \cos x + \sin x} = \frac{\sin x}{\sin x (\cos x + 1)} = \frac{1}{\cos x + 1} \]
+			      \item The integral becomes significantly simpler: $I = \int \frac{1}{\cos x + 1} dx$.
+		      \end{itemize}
+		\item \textbf{Step 2: Apply the Weierstrass Substitution ($t = \tan(x/2)$)}
+		      \begin{itemize}
+			      \item \textbf{Motivation:} This substitution transforms rational functions of $\sin x$ and $\cos x$ into rational functions of $t$, which can often be integrated using standard techniques (like partial fractions, although not needed here).
+			      \item \textbf{The Substitution Formulas:}
+			            \begin{itemize}
+				            \item Let $\boxed{t = \tan\left(\frac{x}{2}\right)}$
+				            \item Then $\cos x = \frac{1-t^2}{1+t^2}$
+				            \item And $dx = \frac{2}{1+t^2} dt$
+				            \item (Also $\sin x = \frac{2t}{1+t^2}$, though not required for this specific simplified integral).
+			            \end{itemize}
+		      \end{itemize}
+		\item \textbf{Step 3: Substitute into the Simplified Integral}
+		      \begin{itemize}
+			      \item Replace $\cos x$ and $dx$ with their $t$-equivalents:
+			            \[ I = \int \underbrace{\frac{1}{\left(\frac{1-t^2}{1+t^2}\right) + 1}}_{\frac{1}{\cos x + 1}} \cdot \underbrace{\left(\frac{2}{1+t^2}\right) dt}_{dx} \]
+			      \item Simplify the first part (the integrand in terms of $x$ expressed in $t$):
+			            \[ \frac{1}{\frac{1-t^2 + 1+t^2}{1+t^2}} = \frac{1}{\frac{2}{1+t^2}} = \frac{1+t^2}{2} \]
+			      \item Substitute this back into the integral expression:
+			            \[ I = \int \left(\frac{1+t^2}{2}\right) \cdot \left(\frac{2}{1+t^2}\right) dt \]
+		      \end{itemize}
+		\item \textbf{Step 4: Evaluate the Integral in $t$}
+		      \begin{itemize}
+			      \item The integrand simplifies dramatically:
+			            \[ I = \int 1 \, dt \]
+			      \item Compute the straightforward integral:
+			            \[ I = t + C \]
+		      \end{itemize}
+		\item \textbf{Step 5: Substitute Back to $x$}
+		      \begin{itemize}
+			      \item Replace $t$ with its definition in terms of $x$:
+			            \[ I = \tan\left(\frac{x}{2}\right) + C \]
+		      \end{itemize}
+		\item \textbf{Result:} The integral evaluates to $\int \frac{\tan x}{\sin x + \tan x} dx = \tan\left(\frac{x}{2}\right) + C$.
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Convergence of Improper Integrals with Oscillating Numerators]
+	\textbf{Key Question:} How to discuss the convergence of the improper integral $I = \int_0^\infty \frac{\cos x}{1+x^2} dx$?
+	\begin{itemize}
+		\item \textbf{Step 1: Identify Potential Issues}
+		      \begin{itemize}
+			      \item \textbf{Infinite Interval:} The upper limit is $+\infty$, making it an improper integral of the first kind.
+			      \item \textbf{Sign Changes:} The numerator $\cos x$ oscillates between -1 and 1, causing the integrand $f(x) = \frac{\cos x}{1+x^2}$ to change sign infinitely often.
+			      \item \textbf{Problem with Direct Comparison:} Standard comparison tests (Direct Comparison, Limit Comparison) require the integrand to be non-negative (at least eventually), which is not the case here.
+		      \end{itemize}
+		\item \textbf{Step 2: Use Absolute Convergence}
+		      \begin{itemize}
+			      \item \textbf{Strategy:} Test the convergence of the integral of the absolute value of the integrand:
+			            \[ I_{abs} = \int_0^\infty \left| \frac{\cos x}{1+x^2} \right| dx = \int_0^\infty \frac{|\cos x|}{1+x^2} dx \]
+			      \item \textbf{Absolute Convergence Theorem:} If $I_{abs}$ converges, then the original integral $I$ also converges.
+			      \item The new integrand $\frac{|\cos x|}{1+x^2}$ is now non-negative, allowing the use of comparison tests.
+		      \end{itemize}
+		\item \textbf{Step 3: Apply Direct Comparison Test to $I_{abs}$}
+		      \begin{itemize}
+			      \item \textbf{Establish Inequality:} Use the property $|\cos x| \le 1$ for all $x$:
+			            \[ 0 \le \frac{|\cos x|}{1+x^2} \le \frac{1}{1+x^2} \quad \text{for all } x \ge 0 \]
+			      \item \textbf{Analyze the Comparison Integral:} Consider the integral $J = \int_0^\infty \frac{1}{1+x^2} dx$.
+			      \item \textbf{Convergence of $J$ (Method 1: Direct Integration):}
+			            \[ J = \int_0^\infty \frac{1}{1+x^2} dx = [\arctan x]_0^\infty = \lim_{b \to \infty} (\arctan b) - \arctan 0 = \frac{\pi}{2} - 0 = \frac{\pi}{2} \]
+			            Since the result is finite, $J$ converges.
+			      \item \textbf{Convergence of $J$ (Method 2: Splitting \& Asymptotic Comparison - Important General Technique):}
+			            \begin{itemize}
+				            \item Split the integral: $J = \int_0^1 \frac{1}{1+x^2} dx + \int_1^\infty \frac{1}{1+x^2} dx$.
+				            \item The integral $\int_0^1 \frac{1}{1+x^2} dx$ is proper and finite (integrand is continuous on $[0,1]$).
+				            \item For $\int_1^\infty \frac{1}{1+x^2} dx$, compare with $\int_1^\infty \frac{1}{x^2} dx$. Since $0 < \frac{1}{1+x^2} \le \frac{1}{x^2}$ for $x \ge 1$ and $\int_1^\infty \frac{1}{x^2} dx$ converges (p-integral with $p=2>1$), the integral $\int_1^\infty \frac{1}{1+x^2} dx$ converges by Direct Comparison.
+				            \item Since both parts converge, $J$ converges. (Note: Splitting is crucial when dealing with multiple improprieties or when asymptotic comparison is needed at different points).
+			            \end{itemize}
+			      \item \textbf{Conclusion of Comparison Test:} Since $0 \le \frac{|\cos x|}{1+x^2} \le \frac{1}{1+x^2}$ and $\int_0^\infty \frac{1}{1+x^2} dx$ converges, by the Direct Comparison Test, $I_{abs} = \int_0^\infty \frac{|\cos x|}{1+x^2} dx$ must also converge.
+		      \end{itemize}
+		\item \textbf{Step 4: Final Conclusion}
+		      \begin{itemize}
+			      \item We have shown that $I_{abs} = \int_0^\infty \left| \frac{\cos x}{1+x^2} \right| dx$ converges.
+			      \item By the theorem on absolute convergence, if an integral converges absolutely, it also converges simply.
+			      \item Therefore, the original integral $I = \int_0^\infty \frac{\cos x}{1+x^2} dx$ converges.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Determining Improper Integral Convergence using Asymptotic Comparison]
+	\textbf{Key Question:} How can we determine if an improper integral converges when the integrand is complex, especially near a point of discontinuity?
+
+	\begin{itemize}
+		\item \textbf{Problem Setup:} Consider the integral:
+		      $$ I = \int_0^1 f(x) dx = \int_0^1 \frac{\sqrt{x(x^2+1)} e^{2x}}{\tan \sqrt[3]{x}} dx $$
+		      The potential problem (discontinuity) is at $x=0$.
+
+		\item \textbf{Check Conditions for Comparison Test:}
+		      \begin{itemize}
+			      \item The function $f(x)$ must be continuous on $(0, 1]$.
+			      \item The function $f(x)$ must be non-negative on $(0, 1]$.
+			      \item In this case, $f(x)$ is non-negative for $x \in (0, 1]$.
+		      \end{itemize}
+
+		\item \textbf{Apply Asymptotic Comparison Test (Limit Comparison Test):}
+		      We need to find a simpler function $g(x)$ such that $f(x) \sim g(x)$ as $x \to 0^+$. The convergence of $\int_0^1 f(x) dx$ will be the same as the convergence of $\int_0^1 g(x) dx$.
+		      \begin{itemize}
+			      \item \textbf{Analyze numerator as $x \to 0^+$:}
+			            $$ \sqrt{x(x^2+1)} = \sqrt{x^3+x} \sim \sqrt{x} = x^{1/2} $$
+			            $$ e^{2x} \sim e^0 = 1 $$
+			            So, Numerator $\sim x^{1/2}$.
+			      \item \textbf{Analyze denominator as $x \to 0^+$:}
+			            $$ \tan \sqrt{x} \sim \sqrt{x} = x^{1/2} $$
+			            $$ \tan \sqrt[3]{x} \sim x^{1/3} = x^{1/3} $$
+			      \item \textbf{Determine asymptotic behavior of $f(x)$:}
+			            $$ f(x) \sim \frac{\sqrt{x}}{\sqrt[3]{x}} = \frac{x^{1/2}}{x^{1/3}} = x^{1/2 - 1/3} = x^{1/6} $$
+			            So, we use $g(x) = x^{1/6}$.
+		      \end{itemize}
+
+		\item \textbf{Analyze the Comparison Integral:}
+		      We examine the convergence of $\int_0^1 g(x) dx$:
+		      $$ \int_0^1 x^{1/6} dx = \int_0^1 \frac{1}{x^{-1/6}} dx $$
+		      This is a generalized p-integral $\int_0^1 \frac{1}{x^p} dx$. It converges if and only if $p < 1$.
+		      In our case, $p = -1/6$. Since $p = -1/6 < 1$, the comparison integral $\int_0^1 x^{1/6} dx$ converges.
+
+
+
+		\item \textbf{Conclusion:}
+		      Since $f(x) \sim x^{1/6}$ as $x \to 0^+$ and $\int_0^1 x^{1/6} dx$ converges, by the Limit Comparison Test, the original integral
+		      $$ \int_0^1 \frac{\sqrt{x(x^2+1)} e^{2x}}{\tan \sqrt[3]{x}} dx \quad \textbf{converges.} $$
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Convergence of Improper Integrals with Parameters using Taylor Expansion]
+	\textbf{Key Question:} How can we determine the values of a parameter $\alpha$ for which an improper integral converges, especially when the integrand's behavior near the problematic point requires Taylor series?
+
+	\begin{itemize}
+		\item \textbf{Problem Setup:} Consider the integral dependent on $\alpha$:
+		      $$ I(\alpha) = \int_0^1 \frac{3}{[2(x - \log(1+x))]^{3-3\alpha}} dx $$
+		      We need to find the values of $\alpha$ for which this integral converges. The potential problem point is $x=0$.
+
+		\item \textbf{Asymptotic Analysis near $x=0$ using Taylor Expansion:}
+		      To understand the behavior of the integrand $f(x, \alpha) = \frac{3}{[2(x - \log(1+x))]^{3-3\alpha}}$ as $x \to 0^+$, we need the Taylor expansion of $\log(1+x)$ around $x=0$.
+		      \begin{itemize}
+			      \item \textbf{Recall Taylor expansion:}
+			            $$ \log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \dots = x - \frac{x^2}{2} + o(x^2) \quad \text{as } x \to 0 $$
+			      \item \textbf{Analyze the term $x - \log(1+x)$:}
+			            $$ x - \log(1+x) = x - \left( x - \frac{x^2}{2} + o(x^2) \right) = \frac{x^2}{2} + o(x^2) $$
+			            Therefore, $x - \log(1+x) \sim \frac{x^2}{2}$ as $x \to 0^+$.
+			      \item \textbf{Analyze the base of the power in the denominator:}
+			            $$ 2(x - \log(1+x)) \sim 2 \left( \frac{x^2}{2} \right) = x^2 \quad \text{as } x \to 0^+ $$
+			      \item \textbf{Determine the asymptotic behavior of the integrand $f(x, \alpha)$:}
+			            $$ f(x, \alpha) = \frac{3}{[2(x - \log(1+x))]^{3-3\alpha}} \sim \frac{3}{[x^2]^{3-3\alpha}} = \frac{3}{x^{6-6\alpha}} \quad \text{as } x \to 0^+ $$
+		      \end{itemize}
+
+		\item \textbf{Apply Asymptotic Comparison Test:}
+		      The convergence of $I(\alpha)$ is equivalent to the convergence of the comparison integral:
+		      $$ \int_0^1 \frac{3}{x^{6-6\alpha}} dx = 3 \int_0^1 \frac{1}{x^{6-6\alpha}} dx $$
+
+		\item \textbf{Analyze the Comparison Integral (Generalized p-integral):}
+		      The integral $\int_0^1 \frac{1}{x^p} dx$ converges if and only if $p < 1$.
+		      In our case, the exponent is $p = 6 - 6\alpha$.
+
+		\item \textbf{Determine the Condition for Convergence:}
+		      For convergence, we require $p < 1$:
+		      $$ 6 - 6\alpha < 1 $$
+		      $$ 5 < 6\alpha $$
+		      $$ \alpha > \frac{5}{6} $$
+
+		\item \textbf{Conclusion:}
+		      Based on the asymptotic comparison test and the condition for p-integral convergence, the original integral
+		      $$ \int_0^1 \frac{3}{[2(x - \log(1+x))]^{3-3\alpha}} dx \quad \textbf{converges if and only if } \alpha > \frac{5}{6}. $$
+	\end{itemize}
+\end{cascade}
 
 \clearpage
 
