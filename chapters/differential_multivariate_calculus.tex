@@ -1,28 +1,195 @@
-% differential_multivariate_calculus.tex
-\section{Multivariate Differential Calculus}
+\section{Multivariate Calculus}
 
-\subsection*{Sample Cascade Scheme: Analyzing a Function of Two Variables}
+In this section we will explore different types of exercises about multivariate calculus.
 
-\begin{cascade}[Analyzing a Function $f(x, y)$]
-	\textbf{Key Question:} How do you analyze a function of two variables?
+\subsection{Limits exercises}
+
+In this subsection, we will tackle exercises about limits of multivariate functions and explore the different methods we can use for solving them or at least,
+prove that they exist or not.
+
+\begin{cascade}[Studying continuity of a two-variable function at a point]
+	\textbf{Key Question:} How to determine if a piecewise function $f(x, y)$ is continuous at a point where its definition changes, typically $(0,0)$?
+
+	\textbf{Function Example:}
+	\[ f(x, y) = \begin{cases} \frac{x^2 y^2}{x^2 + y^2} & \text{if } (x, y) \neq (0, 0) \\ 0 & \text{if } (x, y) = (0, 0) \end{cases} \]
 	\begin{itemize}
-		\item \textbf{Domain of definition}
-		\item \textbf{Continuity and differentiability}
-		\item \textbf{Compute gradients}
-		\item \textbf{Find critical points}
+		\item \textbf{Check continuity away from the critical point:}
 		      \begin{itemize}
-			      \item Solve $\nabla f = 0$
+			      \item For $(x, y) \neq (0, 0)$, $f(x, y) = \frac{x^2 y^2}{x^2 + y^2}$. This is a ratio of polynomials (which are continuous everywhere).
+			      \item The denominator $x^2 + y^2$ is zero only at $(0, 0)$.
+			      \item Therefore, $f(x, y)$ is continuous for all $(x, y) \neq (0, 0)$ as it's a composition/ratio of continuous functions. The domain is $\mathbb{R}^2$.
 		      \end{itemize}
-		\item \textbf{Classify critical points}
+		\item \textbf{Check continuity at the critical point $(0, 0)$:}
 		      \begin{itemize}
-			      \item Hessian matrix
-			      \item Maximum, minimum, saddle points
+			      \item \textbf{Definition of continuity:} We need to verify if $\lim_{(x,y) \to (0,0)} f(x, y) = f(0, 0)$.
+			      \item We are given $f(0, 0) = 0$.
+			      \item We need to compute $\lim_{(x,y) \to (0,0)} \frac{x^2 y^2}{x^2 + y^2}$. If the limit exists and equals 0, the function is continuous at $(0,0)$.
 		      \end{itemize}
-		\item \textbf{Constrained extrema (if present)}
+		\item \textbf{Method 1: Inequality / Squeeze Theorem}
 		      \begin{itemize}
-			      \item Lagrange multipliers method
+			      \item Find bounds for the expression. Observe that $y^2 \le x^2 + y^2$.
+			      \item For $(x, y) \neq (0, 0)$, divide by $x^2+y^2$: $\frac{y^2}{x^2 + y^2} \le 1$.
+			      \item Since $x^2 \ge 0$, we can multiply by $x^2$: $x^2 \frac{y^2}{x^2 + y^2} \le x^2$.
+			      \item The full expression is non-negative: $0 \le \frac{x^2 y^2}{x^2 + y^2} \le x^2$.
+			      \item Take the limit as $(x,y) \to (0,0)$:
+			            \[ 0 \le \lim_{(x,y) \to (0,0)} \frac{x^2 y^2}{x^2 + y^2} \le \lim_{(x,y) \to (0,0)} x^2 \]
+			      \item Since $\lim_{(x,y) \to (0,0)} 0 = 0$ and $\lim_{(x,y) \to (0,0)} x^2 = 0$.
+			      \item By the Squeeze Theorem, $\lim_{(x,y) \to (0,0)} \frac{x^2 y^2}{x^2 + y^2} = 0$.
+			      \item \textit{Note:} If the expression involved terms that could be negative, absolute values would be necessary (e.g., $|f(x,y)| \le g(x,y)$ where $g \to 0$).
+		      \end{itemize}
+		\item \textbf{Method 2: Polar Coordinates}
+		      \begin{itemize}
+			      \item Substitute $x = \rho \cos \theta$ and $y = \rho \sin \theta$. The limit $(x, y) \to (0, 0)$ corresponds to $\rho \to 0^+$.
+			      \item Substitute into the expression:
+			            \[ \frac{(\rho \cos \theta)^2 (\rho \sin \theta)^2}{(\rho \cos \theta)^2 + (\rho \sin \theta)^2} = \frac{\rho^4 \cos^2 \theta \sin^2 \theta}{\rho^2 (\cos^2 \theta + \sin^2 \theta)} = \frac{\rho^4 \cos^2 \theta \sin^2 \theta}{\rho^2} = \rho^2 \cos^2 \theta \sin^2 \theta \]
+			      \item Compute the limit as $\rho \to 0^+$: $\lim_{\rho \to 0^+} (\rho^2 \cos^2 \theta \sin^2 \theta)$.
+			      \item Use bounds for the trigonometric part: $0 \le \cos^2 \theta \sin^2 \theta \le 1$. The value depends on $\theta$ but is bounded.
+			      \item Multiply by $\rho^2$: $0 \le \rho^2 \cos^2 \theta \sin^2 \theta \le \rho^2$.
+			      \item Apply the Squeeze Theorem for the limit in $\rho$: Since $\lim_{\rho \to 0^+} 0 = 0$ and $\lim_{\rho \to 0^+} \rho^2 = 0$.
+			      \item Therefore, $\lim_{\rho \to 0^+} (\rho^2 \cos^2 \theta \sin^2 \theta) = 0$. The limit exists and is independent of $\theta$.
+		      \end{itemize}
+		\item \textbf{Conclusion for $(0, 0)$:} Both methods show $\lim_{(x,y) \to (0,0)} f(x, y) = 0$. Since this equals $f(0, 0)$, the function is continuous at $(0, 0)$.
+		\item \textbf{Overall Conclusion:} Since $f(x, y)$ is continuous for $(x,y) \neq (0,0)$ and also continuous at $(0,0)$, the function is continuous on its entire domain $\mathbb{R}^2$.
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Proving discontinuity using path restriction]
+	\textbf{Key Question:} How can we show a function $f(x, y)$ is \textit{not} continuous at a point, for example, $(0,0)$?
+
+	\textbf{Function Example:}
+	\[ f(x, y) = \begin{cases} \arctan\left(\frac{x}{x^2 + y^2}\right) & \text{if } (x, y) \neq (0, 0) \\ \frac{\pi}{2} & \text{if } (x, y) = (0, 0) \end{cases} \]
+	\textbf{Domain:} $\mathbb{R}^2$.
+	\begin{itemize}
+		\item \textbf{Check continuity away from the critical point:}
+		      \begin{itemize}
+			      \item For $(x, y) \neq (0, 0)$, $f(x, y) = \arctan\left(\frac{x}{x^2 + y^2}\right)$.
+			      \item This is a composition of continuous functions ($\arctan$ and a rational function whose denominator is non-zero away from the origin).
+			      \item Thus, $f(x, y)$ is continuous for all $(x, y) \neq (0, 0)$.
+		      \end{itemize}
+		\item \textbf{Check continuity at the critical point $(0, 0)$:}
+		      \begin{itemize}
+			      \item \textbf{Condition for continuity:} We need $\lim_{(x,y) \to (0,0)} f(x, y) = f(0, 0)$.
+			      \item We are given $f(0, 0) = \frac{\pi}{2}$.
+			      \item We need to evaluate $\lim_{(x,y) \to (0,0)} \arctan\left(\frac{x}{x^2 + y^2}\right)$.
+		      \end{itemize}
+		\item \textbf{Strategy: Show the limit does not exist by restricting to a path.}
+		      \begin{itemize}
+			      \item If the limit exists, it must be the same regardless of the path taken towards $(0,0)$.
+			      \item If we find even one path along which the limit doesn't exist, or two paths with different limits, then the overall limit does not exist.
+			      \item \textit{Insight:} "Sometimes a single curve is enough to show the limit doesn't exist."
+			      \item Let's analyze the argument of $\arctan$: $g(x, y) = \frac{x}{x^2 + y^2}$.
+			      \item \textbf{Try the path $y=x$:} Substitute $y=x$ into $g(x,y)$ for $x \neq 0$:
+			            \[ g(x, x) = \frac{x}{x^2 + x^2} = \frac{x}{2x^2} = \frac{1}{2x} \]
+			      \item Compute the limit along this path as $x \to 0$:
+			            \[ \lim_{x \to 0} g(x, x) = \lim_{x \to 0} \frac{1}{2x} \]
+			      \item This limit does not exist (it tends to $+\infty$ as $x \to 0^+$ and $-\infty$ as $x \to 0^-$).
+		      \end{itemize}
+		\item \textbf{Conclusion for the limit of $f(x,y)$:}
+		      \begin{itemize}
+			      \item Since the limit of the argument $g(x,y) = \frac{x}{x^2+y^2}$ does not exist as $(x,y) \to (0,0)$ along the path $y=x$, the overall limit $\lim_{(x,y) \to (0,0)} g(x, y)$ does not exist.
+			      \item Consequently, the limit $\lim_{(x,y) \to (0,0)} \arctan\left(g(x, y)\right)$ also does not exist.
+			            (As $g \to \pm\infty$, $\arctan(g) \to \pm\frac{\pi}{2}$, which are different values depending on the direction along the path $y=x$, confirming non-existence).
+		      \end{itemize}
+		\item \textbf{Conclusion for continuity at $(0, 0)$:}
+		      \begin{itemize}
+			      \item Since $\lim_{(x,y) \to (0,0)} f(x, y)$ does not exist, the function cannot be continuous at $(0, 0)$. The condition $\lim_{(x,y) \to (0,0)} f(x, y) = f(0, 0)$ is not met.
+		      \end{itemize}
+		\item \textbf{Overall Conclusion:} The function $f(x, y)$ is continuous on $\mathbb{R}^2 \setminus \{(0, 0)\}$ but is discontinuous at the origin $(0, 0)$.
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Limit Existence and Continuity in $\mathbb{R}^2$ vs. Restricted Domain]
+	\textbf{Key Questions:}
+	\begin{enumerate}[a)]
+		\item Does $\lim_{(x,y) \to (0,0)} f(x, y)$ exist?
+		\item Is $f$ continuous at $(0,0)$?
+		\item Is $f$ continuous in $D = \{(x,y) \in \mathbb{R}^2 : |y| \le x \le 1\}$?
+	\end{enumerate}
+	\textbf{Function Example:}
+	\[ f(x, y) = \begin{cases} \frac{y^2}{x} & \text{if } x \neq 0 \\ 0 & \text{if } x = 0 \end{cases} \]
+	\begin{itemize}
+		\item \textbf{a) Existence of the limit at (0,0) in $\mathbb{R}^2$:}
+		      \begin{itemize}
+			      \item \textbf{Strategy:} Check limits along different paths approaching $(0,0)$. If they differ, the limit does not exist.
+			      \item \textbf{Path 1: $y = \sqrt{x}$ (approaching from $x > 0$):}
+			            \[ f(x, \sqrt{x}) = \frac{(\sqrt{x})^2}{x} = \frac{x}{x} = 1 \quad (\text{for } x > 0) \]
+			            \[ \lim_{x \to 0^+} f(x, \sqrt{x}) = 1 \]
+			      \item \textbf{Path 2: $y = x$ (approaching from $x \neq 0$):}
+			            \[ f(x, x) = \frac{x^2}{x} = x \quad (\text{for } x \neq 0) \]
+			            \[ \lim_{x \to 0} f(x, x) = \lim_{x \to 0} x = 0 \]
+			      \item \textbf{Conclusion (a):} Since the limits along different paths ($1$ and $0$) are not equal, the limit $\lim_{(x,y) \to (0,0)} f(x, y)$ does not exist (when considered in $\mathbb{R}^2$).
+		      \end{itemize}
+		\item \textbf{b) Continuity at (0,0) in $\mathbb{R}^2$:}
+		      \begin{itemize}
+			      \item For continuity at $(0,0)$, the limit $\lim_{(x,y) \to (0,0)} f(x, y)$ must exist and equal $f(0,0)$.
+			      \item From part (a), the limit does not exist.
+			      \item \textbf{Conclusion (b):} Therefore, $f$ is not continuous at $(0,0)$ when considered as a function on $\mathbb{R}^2$.
+		      \end{itemize}
+		\item \textbf{c) Continuity in the domain $D = \{(x,y) \in \mathbb{R}^2 : |y| \le x \le 1\}$:}
+		      \begin{itemize}
+			      \item \textbf{Visualize D:} This domain is a region bounded by the lines $y=x$, $y=-x$, and $x=1$. It lies entirely in the $x \ge 0$ half-plane and includes the origin.
+			      \item \textbf{Continuity for $x > 0$ in D:} In this region, $0 < x \le 1$. The function is $f(x,y) = y^2/x$. This is a ratio of polynomials with a non-zero denominator, hence continuous.
+			      \item \textbf{Continuity at (0,0) *within D*:} We need to evaluate the limit as $(x,y) \to (0,0)$ such that $(x,y)$ remains in $D$. This means we approach $(0,0)$ satisfying $|y| \le x$.
+			      \item \textbf{Using Squeeze Theorem within D:} For $(x,y) \in D$ and $x \neq 0$:
+			            \begin{itemize}
+				            \item Since $|y| \le x$, we have $y^2 \le x^2$ (as $x \ge 0$).
+				            \item Since $x > 0$ in $D \setminus \{(0,0)\}$, we can divide by $x$: $\frac{y^2}{x} \le \frac{x^2}{x} = x$.
+				            \item Also, $f(x,y) = \frac{y^2}{x} \ge 0$.
+				            \item So, for $(x,y) \in D \setminus \{(0,0)\}$, we have $0 \le f(x,y) \le x$.
+			            \end{itemize}
+			      \item Take the limit as $(x,y) \to (0,0)$ *within D*. As $(x,y) \to (0,0)$ in D, we must have $x \to 0^+$.
+			            \[ \lim_{\substack{(x,y) \to (0,0)}} 0 \le \lim_{\substack{(x,y) \to (0,0)}} f(x,y) \le \lim_{\substack{(x,y) \to (0,0)}} x \]
+			            \[ 0 \le \lim_{\substack{(x,y) \to (0,0)}} f(x,y) \le 0 \]
+			      \item By the Squeeze Theorem, $\lim_{\substack{(x,y) \to (0,0)}} f(x, y) = 0$.
+			      \item This limit value (0) matches the function definition at the origin: $f(0,0) = 0$.
+			      \item \textbf{Conclusion (c):} The function $f$ is continuous at every point $(x,y)$ with $x>0$ in $D$. The limit exists at $(0,0)$ *when restricted to D* and equals $f(0,0)$. Therefore, $f$ is continuous throughout the domain $D$.
 		      \end{itemize}
 	\end{itemize}
 \end{cascade}
 
-% Add further cascade schemes about multivariate calculus here
+\hfill
+
+\begin{cascade}[Proving Limit Non-Existence \& Pitfalls of Inequalities]
+	\textbf{Key Question:} How to prove a limit does not exist at (0,0) and why might standard inequality methods fail?
+	\textbf{Function Example:}
+	\[ f(x, y) = \begin{cases} \frac{x^2 y}{x^4 + y^2} & \text{if } (x, y) \neq (0, 0) \\ 0 & \text{if } (x, y) = (0, 0) \end{cases} \]
+	\textbf{Domain:} $\mathbb{R}^2$.
+	\begin{itemize}
+		\item \textbf{Continuity away from (0,0):}
+		      \begin{itemize}
+			      \item For $(x, y) \neq (0, 0)$, $f(x, y)$ is a ratio of polynomials. The denominator $x^4 + y^2 = 0$ only if $x=0$ and $y=0$.
+			      \item Thus, $f(x, y)$ is continuous on $\mathbb{R}^2 \setminus \{(0, 0)\}$.
+		      \end{itemize}
+		\item \textbf{Investigating the limit at (0,0):}
+		      \begin{itemize}
+			      \item \textbf{Conjecture:} The limit $\lim_{(x,y) \to (0,0)} f(x, y)$ does not exist.
+			      \item \textbf{Strategy: Path Restriction.} Find paths approaching (0,0) along which the function has different limits.
+			      \item \textbf{Path 1: $y = x^2$ (Parabolic path):} Substitute $y=x^2$ into $f(x,y)$ for $x \neq 0$:
+			            \[ f(x, x^2) = \frac{x^2 (x^2)}{x^4 + (x^2)^2} = \frac{x^4}{x^4 + x^4} = \frac{x^4}{2x^4} = \frac{1}{2} \]
+			            \[ \lim_{x \to 0} f(x, x^2) = \frac{1}{2} \]
+			      \item \textbf{Path 2: $y = 0$ (Along the x-axis):} Substitute $y=0$ into $f(x,y)$ for $x \neq 0$:
+			            \[ f(x, 0) = \frac{x^2 (0)}{x^4 + 0^2} = \frac{0}{x^4} = 0 \]
+			            \[ \lim_{x \to 0} f(x, 0) = 0 \]
+			      \item \textbf{Conclusion on Limit:} Since the limits along different paths ($1/2$ and $0$) are not equal, the limit $\lim_{(x,y) \to (0,0)} f(x, y)$ does not exist.
+		      \end{itemize}
+		\item \textbf{Continuity at (0,0):}
+		      \begin{itemize}
+			      \item Since the limit does not exist, the function is not continuous at $(0,0)$. (The limit value would need to exist and be equal to $f(0,0)=0$).
+		      \end{itemize}
+		\item \textbf{Observation: Why Squeeze Theorem / Inequalities Can Be Misleading Here}
+		      \begin{itemize}
+			      \item \textbf{Attempt using AM-GM-like inequality:} We know $2ab \le a^2+b^2$. Let $a=x^2$ and $b=y$. Then $2x^2|y| \le (x^2)^2 + y^2 = x^4 + y^2$.
+			      \item This gives $|f(x,y)| = \frac{x^2 |y|}{x^4 + y^2} \le \frac{\frac{1}{2}(x^4 + y^2)}{x^4 + y^2} = \frac{1}{2}$.
+			      \item So, $0 \le |f(x,y)| \le \frac{1}{2}$. This shows the function is bounded near the origin.
+			      \item \textbf{Why it fails:} This bound (1/2) does not tend to 0. Therefore, the Squeeze Theorem cannot be used to prove the limit is 0. It also doesn't prove the limit *isn't* 0, it's simply inconclusive for determining the limit value or existence based on squeezing towards 0.
+			      \item \textbf{Another perspective:} Trying to bound $\frac{x^2}{x^4+y^2}$ by something that goes to zero fails because the $x^4$ term dominates the $x^2$ term along certain paths (like $y=0$), but not along others (like $y=x^2$ where $x^4+y^2 = 2x^4$, making the fraction $x^2/(2x^4) = 1/(2x^2)$ which diverges). The different powers ($x^2$ vs $x^4$) prevent a simple bounding function that works for all paths and tends to zero.
+			      \item \textbf{Key Takeaway:} Path restriction is often necessary when the degrees of terms in the numerator and denominator are 'unbalanced' in a way that depends on the relationship between $x$ and $y$ (e.g., $y \approx x^2$). Simple inequalities might hide this path-dependent behavior.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\clearpage
