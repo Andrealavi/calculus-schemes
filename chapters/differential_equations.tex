@@ -1,20 +1,175 @@
 % differential_equations.tex
 \section{Differential Equations}
 
-\subsection*{Sample Cascade Scheme: Solving a First-Order Linear Differential Equation}
+\subsection{Exercises on separable differential equations}
 
-\begin{cascade}[First-Order Linear Differential Equation]
-	\textbf{Key Question:} How do you solve $y' + p(x)y = q(x)$?
+\begin{cascade}[Solving a Separable Cauchy Problem]
+	\textbf{Problem:} Solve the initial value problem:
+	$$ \begin{cases} y' = \frac{y^2}{y^2+4} t \\ y(0) = 2 \end{cases} $$
 	\begin{itemize}
-		\item \textbf{Find the integrating factor}
+		\item \textbf{1. Identify Equation Type and Separate Variables}
 		      \begin{itemize}
-			      \item $\mu(x) = e^{\int p(x) dx}$
+			      \item The equation is a first-order ODE and is separable.
+			      \item Note: $y=0$ is a constant solution to the DE ($0 = \frac{0}{0+4}t = 0$), but it does not satisfy the initial condition $y(0)=2$.
+			      \item Assuming $y \neq 0$, rewrite $y' = \frac{dy}{dt}$ and separate:
+			            $$ \frac{y^2+4}{y^2} dy = t dt $$
 		      \end{itemize}
-		\item \textbf{Multiply both sides by $\mu(x)$}
-		\item \textbf{Rewrite the left side as the derivative of a product}
-		\item \textbf{Integrate both sides}
-		\item \textbf{Isolate the general solution}
+		\item \textbf{2. Integrate Both Sides}
+		      \begin{itemize}
+			      \item Simplify the left side: $\int \left(1 + \frac{4}{y^2}\right) dy = \int (1 + 4y^{-2}) dy$.
+			      \item Integrate:
+			            $$ \int (1 + 4y^{-2}) dy = y + 4 \frac{y^{-1}}{-1} = y - \frac{4}{y} $$
+			            $$ \int t dt = \frac{t^2}{2} $$
+			      \item Combine with the integration constant $C$:
+			            $$ y - \frac{4}{y} = \frac{t^2}{2} + C $$
+		      \end{itemize}
+		\item \textbf{3. Apply the Initial Condition $y(0)=2$}
+		      \begin{itemize}
+			      \item Substitute $t=0$ and $y=2$ into the implicit solution:
+			            $$ 2 - \frac{4}{2} = \frac{0^2}{2} + C $$
+			            $$ 2 - 2 = 0 + C \implies C = 0 $$
+		      \end{itemize}
+		\item \textbf{4. Obtain the Implicit Solution}
+		      \begin{itemize}
+			      \item Substitute $C=0$ back into the equation:
+			            $$ y - \frac{4}{y} = \frac{t^2}{2} $$
+		      \end{itemize}
+		\item \textbf{5. Solve for the Explicit Solution $y(t)$}
+		      \begin{itemize}
+			      \item Multiply by $y$ (justified since $y(0)=2$, so $y$ is non-zero near $t=0$):
+			            $$ y^2 - 4 = \frac{t^2}{2} y $$
+			      \item Rearrange into a quadratic equation for $y$:
+			            $$ y^2 - \left(\frac{t^2}{2}\right)y - 4 = 0 $$
+			      \item Use the quadratic formula $y = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ with $a=1, b=-\frac{t^2}{2}, c=-4$:
+			            $$ y = \frac{\frac{t^2}{2} \pm \sqrt{\left(-\frac{t^2}{2}\right)^2 - 4(1)(-4)}}{2(1)} $$
+			            $$ = \frac{\frac{t^2}{2} \pm \sqrt{\frac{t^4}{4} + 16}}{2} = \frac{\frac{t^2}{2} \pm \sqrt{\frac{t^4 + 64}{4}}}{2} $$
+			            $$ = \frac{\frac{t^2}{2} \pm \frac{\sqrt{t^4 + 64}}{2}}{2} = \frac{t^2 \pm \sqrt{t^4 + 64}}{4} $$
+			      \item Two potential solutions: $y_1(t) = \frac{t^2 + \sqrt{t^4 + 64}}{4}$ and $y_2(t) = \frac{t^2 - \sqrt{t^4 + 64}}{4}$.
+		      \end{itemize}
+		\item \textbf{6. Select the Correct Branch using $y(0)=2$}
+		      \begin{itemize}
+			      \item Check $y_1(0)$: $y_1(0) = \frac{0^2 + \sqrt{0^4 + 64}}{4} = \frac{\sqrt{64}}{4} = \frac{8}{4} = 2$. (Matches)
+			      \item Check $y_2(0)$: $y_2(0) = \frac{0^2 - \sqrt{0^4 + 64}}{4} = \frac{-\sqrt{64}}{4} = \frac{-8}{4} = -2$. (Does not match)
+		      \end{itemize}
+		\item \textbf{7. Final Explicit Solution}
+		      \begin{itemize}
+			      \item The solution to the Cauchy problem is:
+			            $$ y(t) = \frac{t^2 + \sqrt{t^4 + 64}}{4} $$
+		      \end{itemize}
 	\end{itemize}
 \end{cascade}
 
-% Add further cascade schemes about differential equations here
+\hfill
+
+\begin{cascade}[Qualitative Sketch of Cauchy Problem Solution]
+	\textbf{Problem:} Sketch the solution near $t=0$ for:
+	$$ \begin{cases} y' - (t+2)\left(1+\frac{1}{y}\right) = 0 \\ y(0) = 1 \end{cases} $$
+	\begin{itemize}
+		\item \textbf{1. Attempt Explicit Solution (Separation of Variables)}
+		      \begin{itemize}
+			      \item Rewrite DE: $y' = (t+2)\left(\frac{y+1}{y}\right)$.
+			      \item Note: $y=-1$ is a constant solution to the DE, but $y(0)=1 \neq -1$, so it's not our solution.
+			      \item Separate (for $y \neq -1$): $\frac{y}{y+1} dy = (t+2) dt$.
+			      \item Integrate: $\int \left(1 - \frac{1}{y+1}\right) dy = \int (t+2) dt$.
+			            $$ y - \ln|y+1| = \frac{t^2}{2} + 2t + C $$
+			      \item Apply $y(0)=1$: $1 - \ln|1+1| = 0 + 0 + C \implies C = 1 - \ln(2)$.
+			      \item Implicit Solution: $y - \ln|y+1| = \frac{t^2}{2} + 2t + 1 - \ln(2)$.
+			      \item \textbf{Conclusion:} Finding an explicit $y(t)$ from this implicit form is difficult. We proceed with qualitative analysis.
+		      \end{itemize}
+		\item \textbf{2. Qualitative Analysis at $t=0$}
+		      \begin{itemize}
+			      \item \textbf{Value at $t=0$:} Given $y(0) = 1$. The solution passes through the point $(0, 1)$.
+			      \item \textbf{Slope at $t=0$ ($y'(0)$):} Use the DE $y' = (t+2)(1 + 1/y)$.
+			            $$ y'(0) = (0+2)\left(1 + \frac{1}{y(0)}\right) = (2)\left(1 + \frac{1}{1}\right) = 2(2) = 4 $$
+			            Since $y'(0) = 4 > 0$, the solution is \textbf{increasing} at $t=0$.
+			      \item \textbf{Concavity at $t=0$ ($y''(0)$):} Differentiate the expression for $y'$ with respect to $t$.
+			            $$ y'(t) = (t+2)\left(1 + \frac{1}{y(t)}\right) $$
+			            $$ y''(t) = \frac{d}{dt} \left[ (t+2)\left(1 + \frac{1}{y(t)}\right) \right] $$
+			            Using the product rule:
+			            $$ y''(t) = (1)\left(1 + \frac{1}{y(t)}\right) + (t+2) \frac{d}{dt}\left(1 + \frac{1}{y(t)}\right) $$
+			            $$ y''(t) = 1 + \frac{1}{y(t)} + (t+2)\left( -\frac{1}{y(t)^2} \cdot y'(t) \right) $$
+			      \item Evaluate $y''(0)$ using $t=0$, $y(0)=1$, and $y'(0)=4$:
+			            $$ y''(0) = 1 + \frac{1}{1} + (0+2)\left( -\frac{1}{1^2} \cdot 4 \right) $$
+			            $$ y''(0) = 1 + 1 + (2)(-1 \cdot 4) = 2 - 8 = -6 $$
+			            Since $y''(0) = -6 < 0$, the solution is \textbf{concave down} at $t=0$.
+		      \end{itemize}
+		\item \textbf{3. Sketching Conclusion}
+		      \begin{itemize}
+			      \item The graph of the solution $y(t)$ near $t=0$:
+			            \begin{itemize}
+				            \item Passes through the point $(0, 1)$.
+				            \item Is increasing at this point (slope is 4).
+				            \item Is concave down at this point (curves downwards).
+			            \end{itemize}
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Solving a Linear First-Order Cauchy Problem]
+	\textbf{Problem:} Solve the initial value problem:
+	$$ \begin{cases} y' = 4y + e^{3t} \\ y(0) = 0 \end{cases} $$
+	This is a linear first-order ODE. Standard form: $y' - 4y = e^{3t}$.
+	Here, $a(t) = -4$ and $g(t) = e^{3t}$. Initial condition is at $t_0=0$.
+
+	\begin{itemize}
+		\item \textbf{Method 1: Using the General Formula (Integrating Factor)}
+		      \begin{itemize}
+			      \item The general solution formula for $y' + a(t)y = g(t)$ with $y(t_0)=y_0$ is:
+			            $$ y(t) = y_0 e^{-A(t)} + e^{-A(t)} \int_{t_0}^t g(s) e^{A(s)} ds $$
+			            where $A(t)$ is an antiderivative of $a(t)$.
+			      \item For our problem $y' - 4y = e^{3t}$: $a(t)=-4$, $g(t)=e^{3t}$, $t_0=0$, $y_0=0$.
+			      \item Choose the antiderivative $A(t) = \int_{t_0}^t a(\tau) d\tau = \int_0^t (-4) d\tau = -4t$.
+			            (This ensures $A(t_0)=A(0)=0$, simplifying the formula slightly, though any antiderivative works).
+			      \item Apply the formula:
+			            $$ y(t) = 0 \cdot e^{-(-4t)} + e^{-(-4t)} \int_{0}^t e^{3s} e^{-4s} ds $$
+			            $$ y(t) = e^{4t} \int_{0}^t e^{-s} ds $$
+			            $$ y(t) = e^{4t} \left[ -e^{-s} \right]_0^t $$
+			            $$ y(t) = e^{4t} (-e^{-t} - (-e^0)) = e^{4t} (-e^{-t} + 1) $$
+			      \item Simplify:
+			            $$ y(t) = e^{4t} - e^{3t} $$
+		      \end{itemize}
+
+		\item \textbf{Method 2: Homogeneous Solution + Particular Solution (Variation of Constants)}
+		      \begin{itemize}
+			      \item \textbf{Step 2a: Solve the Homogeneous Equation} $y' - 4y = 0$.
+			            \begin{itemize}
+				            \item Let the homogeneous solution be $z(t)$. $z' = 4z$.
+				            \item Separate variables: $\frac{dz}{z} = 4 dt$.
+				            \item Integrate: $\ln|z| = 4t + C_1$.
+				            \item Exponentiate: $|z| = e^{4t + C_1} = e^{C_1} e^{4t}$.
+				            \item General homogeneous solution: $z(t) = K e^{4t}$ (where $K = \pm e^{C_1}$ or $K=0$).
+			            \end{itemize}
+			      \item \textbf{Step 2b: Find a Particular Solution using Variation of Constants}
+			            \begin{itemize}
+				            \item Assume a particular solution $y_p(t)$ of the form $y_p(t) = K(t) e^{4t}$.
+				            \item Find the derivative: $y_p'(t) = K'(t) e^{4t} + K(t) (4e^{4t})$.
+				            \item Substitute $y_p$ and $y_p'$ into the full non-homogeneous equation $y' - 4y = e^{3t}$:
+				                  $$ (K'(t) e^{4t} + 4K(t) e^{4t}) - 4(K(t) e^{4t}) = e^{3t} $$
+				            \item Simplify: $K'(t) e^{4t} = e^{3t}$.
+				            \item Solve for $K'(t)$: $K'(t) = e^{3t} e^{-4t} = e^{-t}$.
+				            \item Integrate to find $K(t)$ (we only need one instance, constant=0):
+				                  $$ K(t) = \int e^{-t} dt = -e^{-t} $$
+				            \item The particular solution is: $y_p(t) = K(t) e^{4t} = (-e^{-t}) e^{4t} = -e^{3t}$.
+			            \end{itemize}
+			      \item \textbf{Step 2c: Combine for General Solution}
+			            \begin{itemize}
+				            \item The general solution is $y(t) = z(t) + y_p(t) = K e^{4t} - e^{3t}$.
+			            \end{itemize}
+			      \item \textbf{Step 2d: Apply Initial Condition} $y(0) = 0$.
+			            \begin{itemize}
+				            \item $0 = K e^{4(0)} - e^{3(0)} = K e^0 - e^0 = K - 1$.
+				            \item Therefore, $K = 1$.
+			            \end{itemize}
+			      \item \textbf{Step 2e: Final Solution}
+			            \begin{itemize}
+				            \item Substitute $K=1$ into the general solution: $y(t) = (1)e^{4t} - e^{3t}$.
+				            \item $y(t) = e^{4t} - e^{3t}$
+			            \end{itemize}
+		      \end{itemize}
+		\item \textbf{Conclusion:} Both methods yield the same solution $y(t) = e^{4t} - e^{3t}$.
+	\end{itemize}
+\end{cascade}
+
+\clearpage
