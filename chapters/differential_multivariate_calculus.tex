@@ -193,3 +193,154 @@ prove that they exist or not.
 \end{cascade}
 
 \clearpage
+
+\subsection{Exercises on continuity, derivability and differentiability}
+
+\begin{cascade}[Analyzing Continuity Derivability and Differentiability]
+	In this class of exercises we have to check continuity, derivability and differentiability of a function in a given point or on its domain. \\
+
+	\textbf{Function:} $f(x,y) = \begin{cases} \frac{ |x|y^4}{x^4+y^4} & \text{if } (x,y) \neq (0,0) \\ 0 & \text{if } (x,y) = (0,0) \end{cases}$ \\
+
+	\begin{itemize}
+		\item \textbf{1. Check Continuity at (0,0)}
+		      \begin{itemize}
+			      \item Compute the limit: $\lim_{(x,y)\to(0,0)} f(x,y)$.
+			      \item Use Squeeze Theorem: $0 \leq \left| \frac{|x|y^4}{x^4+y^4} \right| = \frac{|x|y^4}{x^4+y^4}$.
+			      \item Since $y^4 \leq x^4+y^4$, we have $\frac{y^4}{x^4+y^4} \leq 1$.
+			      \item Thus, $0 \leq \frac{|x|y^4}{x^4+y^4} \leq |x|$.
+			      \item As $(x,y) \to (0,0)$, we know $|x| \to 0$.
+			      \item By the Squeeze Theorem, $\lim_{(x,y)\to(0,0)} f(x,y) = 0$.
+			      \item Since the limit equals the function value $f(0,0)=0$, the function is \textbf{continuous} at (0,0).
+		      \end{itemize}
+		\item \textbf{2. Check Partial Derivatives at (0,0)}
+		      \begin{itemize}
+			      \item Use the limit definition for partial derivatives:
+			      \item $\frac{\partial f}{\partial x}(0,0) = \lim_{h\to 0} \frac{f(h,0) - f(0,0)}{h} = \lim_{h\to 0} \frac{0-0}{h} = 0$.
+			      \item $\frac{\partial f}{\partial y}(0,0) = \lim_{k\to 0} \frac{f(0,k) - f(0,0)}{k} = \lim_{k\to 0} \frac{0-0}{k} = 0$.
+			      \item Both partial derivatives exist at (0,0). Thus, the function is \textbf{derivable} at (0,0) and the gradient is $\nabla f(0,0) = (0,0)$.
+		      \end{itemize}
+		\item \textbf{3. Check Directional Derivative at (0,0) for $w=(-1,-1)$}
+		      \begin{itemize}
+			      \item Normalize the direction vector $w$: $||w|| = \sqrt{(-1)^2+(-1)^2} = \sqrt{2}$.
+			      \item The unit vector is $v = \frac{w}{||w||} = \left(-\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}\right)$.
+			      \item Compute $D_v f(0,0)$ using the limit definition: $D_v f(0,0) = \lim_{t\to 0} \frac{f(tv) - f(0,0)}{t}$.
+			      \item \begin{align*}
+				            D_v f(0,0) = \lim_{t\to 0} \frac{f(-\frac{t}{\sqrt{2}}, -\frac{t}{\sqrt{2}})}{t} = \lim_{t\to 0} \frac{1}{t} \left[ \frac{|-\frac{t}{\sqrt{2}}|(-\frac{t}{\sqrt{2}})^4}{(-\frac{t}{\sqrt{2}})^4 + (-\frac{t}{\sqrt{2}})^4} \right] \\
+				            = \lim_{t\to 0} \frac{1}{t} \left[ \frac{\frac{|t|}{\sqrt{2}} \frac{t^4}{4}}{\frac{t^4}{4} + \frac{t^4}{4}} \right] = \lim_{t\to 0} \frac{1}{t} \left[ \frac{\frac{|t|t^4}{4\sqrt{2}}}{\frac{2t^4}{4}} \right] = \lim_{t\to 0} \frac{|t|}{2\sqrt{2} t}
+			            \end{align*}
+			      \item This limit \textbf{does not exist} because the limits from the left ($t \to 0^-$) and right ($t \to 0^+$) are different ($-\frac{1}{2\sqrt{2}}$ and $\frac{1}{2\sqrt{2}}$, respectively).
+		      \end{itemize}
+		\item \textbf{4. Check Differentiability at (0,0)}
+		      \begin{itemize}
+			      \item \textbf{Method 1: Using Directional Derivative Result}
+			            \begin{itemize}
+				            \item A necessary condition for differentiability at a point is the existence of all directional derivatives at that point.
+				            \item Since $D_v f(0,0)$ for $v=(-\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}})$ does not exist, $f$ is \textbf{not differentiable} at (0,0).
+			            \end{itemize}
+			      \item \textbf{Method 2: Using the Definition of Differentiability}
+			            \begin{itemize}
+				            \item Check if the limit defining differentiability is zero:
+				            \item \begin{align*}
+					                  \lim_{(h,k)\to(0,0)} \frac{f(h,k) - f(0,0) - \nabla f(0,0) \cdot (h,k)}{\sqrt{h^2+k^2}} \\
+					                  \lim_{(h,k)\to(0,0)} \frac{f(h,k) - 0 - (0,0) \cdot (h,k)}{\sqrt{h^2+k^2}}              \\
+					                  = \lim_{(h,k)\to(0,0)} \frac{\frac{|h|k^4}{h^4+k^4}}{\sqrt{h^2+k^2}} = \lim_{(h,k)\to(0,0)} \frac{|h|k^4}{(h^4+k^4)\sqrt{h^2+k^2}}
+				                  \end{align*}
+				            \item Test the limit along the path $h=k$:
+				            \item $\lim_{h\to 0} \frac{|h|h^4}{(h^4+h^4)\sqrt{h^2+h^2}} = \lim_{h\to 0} \frac{|h|h^4}{2h^4\sqrt{2h^2}} = \lim_{h\to 0} \frac{|h|h^4}{2h^4\sqrt{2}|h|} = \frac{1}{2\sqrt{2}}$.
+				            \item Since the limit must be 0 for differentiability, and we found a path where the limit is $\frac{1}{2\sqrt{2}} \neq 0$, the function $f$ is \textbf{not differentiable} at (0,0).
+			            \end{itemize}
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Analysis a $\arctan$ function]
+	\textbf{Function:} $f(x,y) = x \arctan\left(\frac{y}{x}\right)$
+	\begin{itemize}
+		\item \textbf{1. Determine the Domain}
+		      \begin{itemize}
+			      \item The argument of $\arctan$ requires the denominator $x$ to be non-zero.
+			      \item Domain $D = \{(x,y) \in \mathbb{R}^2 \mid x \neq 0\}$.
+			      \item This domain represents the entire $\mathbb{R}^2$ plane excluding the y-axis.
+			      \item The domain is open, not connected, and not bounded.
+		      \end{itemize}
+		\item \textbf{2. Determine where $f(x,y) \ge 0$}
+		      \begin{itemize}
+			      \item We need $x \arctan(\frac{y}{x}) \ge 0$.
+			      \item Case 1: $x > 0$. Requires $\arctan(\frac{y}{x}) \ge 0$, which implies $\frac{y}{x} \ge 0$. Since $x>0$, this means $y \ge 0$.
+			      \item Case 2: $x < 0$. Requires $\arctan(\frac{y}{x}) \le 0$, which implies $\frac{y}{x} \le 0$. Since $x<0$, this means $y \ge 0$.
+			      \item Combining both cases, $f(x,y) \ge 0$ if and only if $y \ge 0$ (and $x \neq 0$).
+			      \item The set is $\{(x,y) \in \mathbb{R}^2 \mid x \neq 0, y \ge 0\}$. (The upper half-plane excluding the y-axis).
+		      \end{itemize}
+		\item \textbf{3. Continuous Extension to $\mathbb{R}^2$}
+		      \begin{itemize}
+			      \item The function is continuous on its domain $D$ as it's composed of continuous functions.
+			      \item To extend it continuously to $\mathbb{R}^2$, we need to define it for $x=0$ such that the limit matches the defined value.
+			      \item Consider the limit as $(x,y) \to (0, y_0)$ for any $y_0 \in \mathbb{R}$.
+			      \item $\lim_{(x,y)\to(0, y_0)} x \arctan\left(\frac{y}{x}\right)$.
+			      \item Since $x \to 0$ and $\arctan(\frac{y}{x})$ is bounded (between $-\pi/2$ and $\pi/2$), the limit is $0$.
+			      \item We can define a continuous extension $\tilde{f}: \mathbb{R}^2 \to \mathbb{R}$ as:
+			            $$ \tilde{f}(x,y) = \begin{cases} x \arctan(\frac{y}{x}) & \text{if } x \neq 0 \\ 0 & \text{if } x = 0 \end{cases} $$
+			      \item This function $\tilde{f}$ is continuous on all of $\mathbb{R}^2$.
+		      \end{itemize}
+		\item \textbf{4. Gradient and Directional Derivatives at (1,0)}
+		      \begin{itemize}
+			      \item Compute partial derivatives for $x \neq 0$:
+			            \begin{itemize}
+				            \item $\frac{\partial f}{\partial x} = \arctan\left(\frac{y}{x}\right) + x \cdot \frac{1}{1+(y/x)^2} \cdot \left(-\frac{y}{x^2}\right) = \arctan\left(\frac{y}{x}\right) - \frac{xy}{x^2+y^2}$.
+				            \item $\frac{\partial f}{\partial y} = x \cdot \frac{1}{1+(y/x)^2} \cdot \left(\frac{1}{x}\right) = \frac{x^2}{x^2+y^2}$.
+			            \end{itemize}
+			      \item Evaluate at the point $(1,0)$:
+			            \begin{itemize}
+				            \item $\frac{\partial f}{\partial x}(1,0) = \arctan(0) - \frac{1 \cdot 0}{1^2+0^2} = 0$.
+				            \item $\frac{\partial f}{\partial y}(1,0) = \frac{1^2}{1^2+0^2} = 1$.
+			            \end{itemize}
+			      \item The gradient is $\nabla f(1,0) = (0, 1)$.
+			      \item Since the partial derivatives are continuous around $(1,0)$ (as $x=1 \neq 0$), the function $f$ is differentiable at $(1,0)$.
+			      \item \textbf{Conclusion on Directional Derivatives:} Because $f$ is differentiable at $(1,0)$, all directional derivatives $D_v f(1,0)$ exist and can be calculated using the formula $D_v f(1,0) = \nabla f(1,0) \cdot v$.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\hfill
+
+\begin{cascade}[Gradient and Tangent Line to Contour Line]
+	\textbf{Function:} $f(x,y) = \frac{\sqrt{xy}}{e^{2x}}$ \quad (Note: Domain requires $xy \ge 0$)
+
+	\textbf{Point:} $P_0 = (-1, -1)$ (Point is in the domain as $(-1)(-1) = 1 \ge 0$)
+	\begin{itemize}
+		\item \textbf{1. Compute the Gradient $\nabla f(-1,-1)$}
+		      \begin{itemize}
+			      \item Compute partial derivative with respect to $x$:
+			            $$ \frac{\partial f}{\partial x} = \frac{(\frac{1}{2\sqrt{xy}} \cdot y) e^{2x} - \sqrt{xy} (2e^{2x})}{(e^{2x})^2} = \frac{e^{2x}(\frac{y}{2\sqrt{xy}} - 2\sqrt{xy})}{e^{4x}} = \frac{y - 4xy}{2\sqrt{xy} e^{2x}} $$
+			      \item Evaluate $\frac{\partial f}{\partial x}$ at $(-1,-1)$:
+			            $$ \frac{\partial f}{\partial x}(-1,-1) = \frac{-1 - 4(-1)(-1)}{2\sqrt{(-1)(-1)} e^{2(-1)}} = \frac{-1 - 4}{2\sqrt{1} e^{-2}} = \frac{-5}{2e^{-2}} = -\frac{5}{2}e^2 $$
+			      \item Compute partial derivative with respect to $y$:
+			            $$ \frac{\partial f}{\partial y} = \frac{1}{e^{2x}} \cdot \frac{\partial}{\partial y}(\sqrt{xy}) = \frac{1}{e^{2x}} \cdot \frac{1}{2\sqrt{xy}} \cdot x = \frac{x}{2\sqrt{xy} e^{2x}} $$
+			      \item Evaluate $\frac{\partial f}{\partial y}$ at $(-1,-1)$:
+			            $$ \frac{\partial f}{\partial y}(-1,-1) = \frac{-1}{2\sqrt{(-1)(-1)} e^{2(-1)}} = \frac{-1}{2\sqrt{1} e^{-2}} = \frac{-1}{2e^{-2}} = -\frac{1}{2}e^2 $$
+			      \item The Gradient at $(-1,-1)$ is:
+			            $$ \nabla f(-1,-1) = \left( -\frac{5}{2}e^2, -\frac{1}{2}e^2 \right) $$
+		      \end{itemize}
+		\item \textbf{2. Find Tangent Line to contour line at $(-1,-1)$}
+		      \begin{itemize}
+			      \item \textbf{Principle:} The gradient vector $\nabla f(x_0, y_0)$ is orthogonal to the contour line of $f$ passing through $(x_0, y_0)$.
+			      \item The tangent line at $(x_0, y_0)$ must be orthogonal to $\nabla f(x_0, y_0)$.
+			      \item Our point is $P_0 = (-1, -1)$ and gradient is $\nabla f(-1,-1) = (-\frac{5}{2}e^2, -\frac{1}{2}e^2)$.
+			      \item Find a direction vector $w = (w_1, w_2)$ for the tangent line such that $w \cdot \nabla f(-1,-1) = 0$.
+			            $$ w_1 \left(-\frac{5}{2}e^2\right) + w_2 \left(-\frac{1}{2}e^2\right) = 0 $$
+			      \item Divide by $-\frac{1}{2}e^2$: $5w_1 + w_2 = 0$.
+			      \item Choose a simple direction vector satisfying this, e.g., $w_1 = 1$, $w_2 = -5$. So, $w = (1, -5)$.
+			      \item The tangent line passes through $P_0 = (-1, -1)$ with direction vector $w = (1, -5)$.
+			      \item \textbf{Parametric Equation:} $r(t) = P_0 + tw = (-1, -1) + t(1, -5)$
+			            $$ \begin{cases} x = -1 + t \\ y = -1 - 5t \end{cases} $$
+			      \item \textbf{Cartesian Equation:} Eliminate $t$. From the first equation, $t = x + 1$.
+			            $$ y = -1 - 5(x+1) = -1 - 5x - 5 $$
+			            $$ y = -5x - 6 $$
+			      \item The equation of the tangent line to the contour line at $(-1,-1)$ is $y = -5x - 6$.
+		      \end{itemize}
+	\end{itemize}
+\end{cascade}
+
+\clearpage
